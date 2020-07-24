@@ -1,0 +1,9 @@
+C:\Users\User\Desktop\Albion RMT Empire Tool v1\bin\Debug\Albion RMT Empire Tool Beta.exe.config
+C:\Users\User\Desktop\Albion RMT Empire Tool v1\bin\Debug\Albion RMT Empire Tool Beta.exe
+C:\Users\User\Desktop\Albion RMT Empire Tool v1\obj\Debug\Albion_RMT_Empire_Tool_v1.Form1.resources
+C:\Users\User\Desktop\Albion RMT Empire Tool v1\obj\Debug\Albion_RMT_Empire_Tool_Beta.Properties.Resources.resources
+C:\Users\User\Desktop\Albion RMT Empire Tool v1\obj\Debug\Albion RMT Empire Tool Beta.csproj.GenerateResource.cache
+C:\Users\User\Desktop\Albion RMT Empire Tool v1\obj\Debug\Albion RMT Empire Tool Beta.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Albion RMT Empire Tool v1\obj\Debug\Albion RMT Empire Tool Beta.exe
+C:\Users\User\Desktop\Albion RMT Empire Tool v1\obj\Debug\Albion RMT Empire Tool Beta.csprojAssemblyReference.cache
+C:\Users\User\Desktop\Albion RMT Empire Tool v1\obj\Debug\Albion_RMT_Empire_Tool_Beta.Transmutation.resources

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<list>
+
+  <!--*********Resources*********-->
+  <resource>Cloth</resource>
+  <resource>Leather</resource>
+  <resource>Metal_Bar</resource>
+  <resource>Planks</resource>
+  <!--<resource>Stone_Block</resource>-->
+  
+  
+</list>
