@@ -20,11 +20,13 @@ namespace Albion_RMT_Empire_Tool_Beta
     public partial class Transmutation : Form
     {
         private CustomXMLReader customReader;
+        private CustomPictureLoader customPictureLoader;
 
         public Transmutation()
         {
             InitializeComponent();
             customReader = new CustomXMLReader();
+            customPictureLoader = new CustomPictureLoader();
         }
 
         private static List<string> Transmutationlist = new List<string>();
@@ -133,11 +135,11 @@ namespace Albion_RMT_Empire_Tool_Beta
 
                 try
                 {
-                    pictureBox.Load("https://render.albiononline.com/v1/item/" + tier + "_" + ending + enchantment + ".png");
+                    pictureBox.Image = customPictureLoader.GetResourceImageFromAlbionApi(tier, ending, enchantment);
                 }
                 catch
                 {
-                    pictureBox.Load("http://blamedevs.com/T1_TRASH.png");
+                    pictureBox.Image = customPictureLoader.GetT1Trash();
                 }
                 ClearLists();
                 Recipemain(comboBoxTier.SelectedItem.ToString());

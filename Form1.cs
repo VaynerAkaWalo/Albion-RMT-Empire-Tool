@@ -20,11 +20,13 @@ namespace Albion_RMT_Empire_Tool_v1
     {
 
         private CustomXMLReader customReader;
+        private CustomPictureLoader customPictureLoader;
 
         public Form1()
         {
             InitializeComponent();
             customReader = new CustomXMLReader();
+            customPictureLoader = new CustomPictureLoader();
         }
 
 
@@ -316,7 +318,7 @@ namespace Albion_RMT_Empire_Tool_v1
 
         private void ComboBoxSubCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            XmlReader xmlReader = XmlReader.Create(Constants.URLStringItems);
+            XmlReader xmlReader = customReader.GetItemsXml();
             comboBoxItem.Items.Clear();
             while (xmlReader.Read())
             {
@@ -333,7 +335,7 @@ namespace Albion_RMT_Empire_Tool_v1
 
         private void ItemReload()
         {
-            XmlReader xmlReader = customReader.GetItemsXml();//XmlReader.Create(Constants.URLStringItems);
+            XmlReader xmlReader = customReader.GetItemsXml();
             if (comboBoxItem.SelectedItem != null)
             {
                 Object Tier = comboBoxTier.SelectedItem;
@@ -358,13 +360,13 @@ namespace Albion_RMT_Empire_Tool_v1
 
                         try
                         {
-                            pictureBox.Load("https://render.albiononline.com/v1/item/" + tier + ending + enchantment + ".png");
+                            pictureBox.Image = customPictureLoader.GetItemImageFromAlbionApi(Tier.ToString(), ending, enchantment);
                         }
                         catch
                         {
-                            pictureBox.Load("http://blamedevs.com/T1_TRASH.png");
+                            pictureBox.Image = customPictureLoader.GetT1Trash();
                         }
-                        XmlReader xmlReaderload = customReader.GetItemsXml();//XmlReader.Create(Constants.URLStringItems);
+                        XmlReader xmlReaderload = customReader.GetItemsXml();
                         string tree = string.Empty;
                         string resource1 = string.Empty;
                         string resource2 = string.Empty;
@@ -376,7 +378,7 @@ namespace Albion_RMT_Empire_Tool_v1
                             resource1 = xmlReaderload.GetAttribute("resource1");
                             resource2 = xmlReaderload.GetAttribute("resource2");
                         }
-                        xmlReaderload = customReader.GetDataXml();//XmlReader.Create(Constants.URLStringData);
+                        xmlReaderload = customReader.GetDataXml();
                         double cloth = 0;
                         double leather = 0;
                         double metal = 0;
@@ -442,54 +444,44 @@ namespace Albion_RMT_Empire_Tool_v1
 
                         textBoxResource1cost.Enabled = true;
                         textBoxResource2cost.Enabled = true;
-
                         if (resource2 != "Nothing")
                         {
                             try
                             {
-                                if (enchantment == "")
-                                {
-                                    pictureBoxResource1.Load("https://render.albiononline.com/v1/item/" + Tier.ToString() + "_" + resource1.Replace("_", "").ToUpper());
-                                    pictureBoxResource2.Load("https://render.albiononline.com/v1/item/" + Tier.ToString() + "_" + resource2.Replace("_", "").ToUpper());
-                                }
-                                else
-                                {
-                                    pictureBoxResource1.Load("https://render.albiononline.com/v1/item/" + Tier.ToString() + "_" + resource1.Replace("_", "").ToUpper() + "_LEVEL" + enchantment.Replace("@", ""));
-                                    pictureBoxResource2.Load("https://render.albiononline.com/v1/item/" + Tier.ToString() + "_" + resource2.Replace("_", "").ToUpper() + "_LEVEL" + enchantment.Replace("@", ""));
-                                }
-                                pictureBoxJournal.Load("https://render.albiononline.com/v1/item/" + tier + "_JOURNAL_" + station);
+                                //pictureBoxResource1.Load(Constants.URLItemAPIString + Tier.ToString() + "_" + resource1.Replace("_", "").ToUpper());
+                                pictureBoxResource1.Image = customPictureLoader.GetResourceImageFromAlbionApi(Tier.ToString(), resource1, enchantment);
+                                //pictureBoxResource2.Load(Constants.URLItemAPIString + Tier.ToString() + "_" + resource2.Replace("_", "").ToUpper());
+                                pictureBoxResource2.Image = customPictureLoader.GetResourceImageFromAlbionApi(Tier.ToString(), resource2, enchantment);
+
+                                //pictureBoxJournal.Load(Constants.URLItemAPIString + tier + "_JOURNAL_" + station);
+                                pictureBoxJournal.Image = customPictureLoader.GetJournalImageFromAlbionApi(tier, station);
                             }
                             catch
                             {
-                                pictureBoxResource1.Load("http://blamedevs.com/Rough_Logs.png");
-                                pictureBoxResource2.Load("http://blamedevs.com/Rough_Stone.png");
-                                pictureBoxJournal.Load("http://blamedevs.com/T2_JOURNAL_TROPHY_GENERAL.png");
+                                pictureBoxResource1.Image = customPictureLoader.GetRoughLogs();
+                                pictureBoxResource2.Image = customPictureLoader.GetRoughStone();
+                                pictureBoxJournal.Image = customPictureLoader.GetT2Journal();
                             }
                         }
                         else
                         {
                             try
                             {
-                                if (enchantment == "")
-                                {
-                                    pictureBoxResource1.Load("https://render.albiononline.com/v1/item/" + Tier.ToString() + "_" + resource1.Replace("_", "").ToUpper());
-                                }
-                                else
-                                {
-                                    pictureBoxResource1.Load("https://render.albiononline.com/v1/item/" + Tier.ToString() + "_" + resource1.Replace("_", "").ToUpper() + "_LEVEL" + enchantment.Replace("@", ""));
-                                }
-                                pictureBoxJournal.Load("https://render.albiononline.com/v1/item/" + tier + "_JOURNAL_" + station);
+                                pictureBoxResource1.Image = customPictureLoader.GetResourceImageFromAlbionApi(Tier.ToString(), resource1, enchantment);
+                                //pictureBoxJournal.Load(Constants.URLItemAPIString + tier + "_JOURNAL_" + station);
+                                pictureBoxJournal.Image = customPictureLoader.GetJournalImageFromAlbionApi(tier, station);
+
                             }
                             catch
                             {
-                                pictureBoxResource1.Load("http://blamedevs.com/Rough_Logs.png");
-                                pictureBoxJournal.Load("http://blamedevs.com/T2_JOURNAL_TROPHY_GENERAL.png");
+                                pictureBoxResource1.Image = customPictureLoader.GetRoughLogs();
+                                pictureBoxJournal.Image = customPictureLoader.GetT2Journal();
                             }
-                            pictureBoxResource2.Load("http://blamedevs.com/Rough_Stone.png");
+                            pictureBoxResource2.Image = customPictureLoader.GetRoughStone();
                             textBoxResource2cost.Enabled = false;
                         }
 
-                        XmlReader xmlReadercity = customReader.GetItemsXml();//XmlReader.Create(Constants.URLStringItems);
+                        XmlReader xmlReadercity = customReader.GetItemsXml();
                         string city;
                         while (xmlReadercity.Read())
                         {
@@ -716,17 +708,7 @@ namespace Albion_RMT_Empire_Tool_v1
             }
         }
 
-        private void ComboBoxItem_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ItemReload();
-        }
-
-        private void ComboBoxTier_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ItemReload();
-        }
-
-        private void ComboBoxEnchantment_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxItemTierEnchantment_SelectedIndexChanged(object sender, EventArgs e)
         {
             ItemReload();
         }
@@ -743,7 +725,7 @@ namespace Albion_RMT_Empire_Tool_v1
             PriceReloadLaborers();
             Calculation();
         }
-        //merge
+
         private void CheckBoxLowerTierHouse_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxLowerTierHouse.Checked == true)
@@ -756,7 +738,7 @@ namespace Albion_RMT_Empire_Tool_v1
             PriceReloadLaborers();
             Calculation();
         }
-        //merge
+
         private void CheckBoxSameTierHouse_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxSameTierHouse.Checked == true)
@@ -826,16 +808,10 @@ namespace Albion_RMT_Empire_Tool_v1
             Calculation();
         }
 
-        private void TextBoxRRwithoutfocus_TextChanged(object sender, EventArgs e)
+        private void TextBoxRRFocusValue_TextChanged(object sender, EventArgs e)
         {
             Calculation();
         }
-        // merge ^ /
-        private void TextBoxRRwithFocus_TextChanged(object sender, EventArgs e)
-        {
-            Calculation();
-        }
-
         private void TextBoxEmptyJournalPrice_TextChanged(object sender, EventArgs e)
         {
             CheckText(textBoxEmptyJournalPrice);
