@@ -255,7 +255,7 @@
             this.comboBoxEnchantment.Name = "comboBoxEnchantment";
             this.comboBoxEnchantment.Size = new System.Drawing.Size(46, 25);
             this.comboBoxEnchantment.TabIndex = 8;
-            this.comboBoxEnchantment.SelectedIndexChanged += new System.EventHandler(this.ComboBoxEnchantment_SelectedIndexChanged);
+            this.comboBoxEnchantment.SelectedIndexChanged += new System.EventHandler(this.ComboBoxItemTierEnchantment_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -279,7 +279,7 @@
             this.comboBoxTier.Name = "comboBoxTier";
             this.comboBoxTier.Size = new System.Drawing.Size(46, 25);
             this.comboBoxTier.TabIndex = 6;
-            this.comboBoxTier.SelectedIndexChanged += new System.EventHandler(this.ComboBoxTier_SelectedIndexChanged);
+            this.comboBoxTier.SelectedIndexChanged += new System.EventHandler(this.ComboBoxItemTierEnchantment_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -297,7 +297,7 @@
             this.comboBoxItem.Name = "comboBoxItem";
             this.comboBoxItem.Size = new System.Drawing.Size(140, 25);
             this.comboBoxItem.TabIndex = 1;
-            this.comboBoxItem.SelectedIndexChanged += new System.EventHandler(this.ComboBoxItem_SelectedIndexChanged);
+            this.comboBoxItem.SelectedIndexChanged += new System.EventHandler(this.ComboBoxItemTierEnchantment_SelectedIndexChanged);
             // 
             // comboBoxSubCategory
             // 
@@ -445,7 +445,7 @@
             this.textBoxRRwithFocus.Size = new System.Drawing.Size(56, 25);
             this.textBoxRRwithFocus.TabIndex = 13;
             this.textBoxRRwithFocus.Text = "44";
-            this.textBoxRRwithFocus.TextChanged += new System.EventHandler(this.TextBoxRRwithFocus_TextChanged);
+            this.textBoxRRwithFocus.TextChanged += new System.EventHandler(this.TextBoxRRFocusValue_TextChanged);
             // 
             // textBoxRRwithoutfocus
             // 
@@ -456,7 +456,7 @@
             this.textBoxRRwithoutfocus.Size = new System.Drawing.Size(51, 25);
             this.textBoxRRwithoutfocus.TabIndex = 12;
             this.textBoxRRwithoutfocus.Text = "15";
-            this.textBoxRRwithoutfocus.TextChanged += new System.EventHandler(this.TextBoxRRwithoutfocus_TextChanged);
+            this.textBoxRRwithoutfocus.TextChanged += new System.EventHandler(this.TextBoxRRFocusValue_TextChanged);
             // 
             // label9
             // 
