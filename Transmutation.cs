@@ -19,9 +19,12 @@ namespace Albion_RMT_Empire_Tool_Beta
 
     public partial class Transmutation : Form
     {
+        private CustomXMLReader customReader;
+
         public Transmutation()
         {
             InitializeComponent();
+            customReader = new CustomXMLReader();
         }
 
         private static List<string> Transmutationlist = new List<string>();
@@ -36,19 +39,13 @@ namespace Albion_RMT_Empire_Tool_Beta
 
         private void Transmutation_Load(object sender, EventArgs e)
         {
-            CultureInfo customCulture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
-            customCulture.NumberFormat.NumberDecimalSeparator = ",";
-            customCulture.NumberFormat.NumberGroupSeparator = "";
-            Thread.CurrentThread.CurrentCulture = customCulture;
-
-            String URLStringdata = "http://blamedevs.com/data.xml";
-            String URLStringitems = "http://blamedevs.com/items.xml";
+            Thread.CurrentThread.CurrentCulture = CultureClass.GetCultureInfo((CultureInfo)Thread.CurrentThread.CurrentCulture.Clone());
 
             comboBoxTier.SelectedIndex = 0;
             comboBoxEnchantment.SelectedIndex = 0;
 
 
-            XmlReader xmlReader = XmlReader.Create(URLStringitems);
+            XmlReader xmlReader = customReader.GetItemsXml();
             while (xmlReader.Read())
             {
                 if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "resource"))
@@ -59,7 +56,7 @@ namespace Albion_RMT_Empire_Tool_Beta
                 }
             }
 
-            XmlReader xmlReader1 = XmlReader.Create(URLStringdata);
+            XmlReader xmlReader1 = customReader.GetDataXml();
             while (xmlReader1.Read())
             {
                 if ((xmlReader1.NodeType == XmlNodeType.Element) && (xmlReader1.Name == "city"))
@@ -77,15 +74,13 @@ namespace Albion_RMT_Empire_Tool_Beta
         {
             if (comboBoxResource.SelectedItem != null)
             {
-                String URLStringitems = "http://blamedevs.com/items.xml";
-                String URLStringdata = "http://blamedevs.com/data.xml";
 
                 string tier = comboBoxTier.SelectedItem.ToString();
                 string enchantment = "_" + comboBoxEnchantment.SelectedItem.ToString();
                 string ending = comboBoxResource.SelectedItem.ToString().ToUpper().Replace(" ", "");
                 string tierandenchantment = tier + enchantment.Replace("_","");
 
-                XmlReader xmlReader1 = XmlReader.Create(URLStringitems);
+                XmlReader xmlReader1 = customReader.GetItemsXml();
                 string resource = "nothing";
                 string rawresource = "nothing";
                 string city = "Any";
@@ -103,7 +98,7 @@ namespace Albion_RMT_Empire_Tool_Beta
 
                 groupBoxresource.Tag = rawresource;
 
-                XmlReader xmlReader = XmlReader.Create(URLStringitems);
+                XmlReader xmlReader = customReader.GetItemsXml();
                 string name = "name";
                 while (xmlReader.Read())
                 {
@@ -153,9 +148,7 @@ namespace Albion_RMT_Empire_Tool_Beta
         {
             if (comboBoxResource.SelectedItem != null)
             {
-                String URLStringitems = "http://blamedevs.com/items.xml";
-                String URLStringdata = "http://blamedevs.com/data.xml";
-                XmlReader xmlReader = XmlReader.Create(URLStringdata);
+                XmlReader xmlReader = customReader.GetDataXml();
                 int rawquantity = 0;
                 string returnrate = "0,633";
                 string returnratefocus = "0,461";
@@ -172,7 +165,7 @@ namespace Albion_RMT_Empire_Tool_Beta
                     string redtier = "T" + (int.Parse(tier.Replace("T","")) - 1).ToString();
                     string rawresource = "nothing";
                     string name = "nothing";
-                    XmlReader xmlReader1 = XmlReader.Create(URLStringitems);
+                    XmlReader xmlReader1 = customReader.GetItemsXml();
                     while (xmlReader1.Read())
                     {
                         if (xmlReader1.NodeType == XmlNodeType.Element && xmlReader1.Name == groupBoxresource.Tag.ToString() && xmlReader1.GetAttribute("tier") == tier)
@@ -225,7 +218,6 @@ namespace Albion_RMT_Empire_Tool_Beta
 
         private void resorcedisassembly()
         {
-            String URLStringitems = "http://blamedevs.com/items.xml";
             string tier = "";
             int index = 0;
             int enchantmentlevel = 0;
@@ -233,7 +225,7 @@ namespace Albion_RMT_Empire_Tool_Beta
             List<string> namespaces = new List<string>();
             int n = Transmutationlist.Count;
             int m = Tocraftlist.Count;
-            XmlReader xmlReader1 = XmlReader.Create(URLStringitems);
+            XmlReader xmlReader1 = customReader.GetItemsXml();
             while (xmlReader1.Read())
             {
                 if (xmlReader1.NodeType == XmlNodeType.Element && xmlReader1.Name == groupBoxresource.Tag.ToString() && xmlReader1.GetAttribute("tier") != "T3")
@@ -393,8 +385,7 @@ namespace Albion_RMT_Empire_Tool_Beta
 
         private void Cost()
         {
-            String URLStringdata = "http://blamedevs.com/data.xml";
-            XmlReader xmlReader = XmlReader.Create(URLStringdata);
+            XmlReader xmlReader = customReader.GetDataXml();
             
             List<float> itemvalue0 = new List<float>();
             List<float> itemvalue1 = new List<float>();

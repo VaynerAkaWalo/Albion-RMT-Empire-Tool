@@ -18,9 +18,13 @@ namespace Albion_RMT_Empire_Tool_v1
 {
     public partial class Form1 : Form
     {
+
+        private CustomXMLReader customReader;
+
         public Form1()
         {
             InitializeComponent();
+            customReader = new CustomXMLReader();
         }
 
 
@@ -28,12 +32,9 @@ namespace Albion_RMT_Empire_Tool_v1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            CultureInfo customCulture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
-            customCulture.NumberFormat.NumberDecimalSeparator = ",";
-            customCulture.NumberFormat.NumberGroupSeparator = "";
-            Thread.CurrentThread.CurrentCulture = customCulture;
+            Thread.CurrentThread.CurrentCulture = CultureClass.GetCultureInfo((CultureInfo)Thread.CurrentThread.CurrentCulture.Clone());
 
-            WebRequest webRequest = WebRequest.Create("http://blamedevs.com/items.xml");
+            WebRequest webRequest = WebRequest.Create(Constants.URLStringItems);
             webRequest.Timeout = 1200; // miliseconds
             webRequest.Method = "HEAD";
             HttpWebResponse response = null;
@@ -51,51 +52,22 @@ namespace Albion_RMT_Empire_Tool_v1
             comboBoxTier.SelectedIndex = 0;
             comboBoxEnchantment.SelectedIndex = 0;
 
-            String URLStringitems = "http://blamedevs.com/items.xml";
-            String URLStringdata = "http://blamedevs.com/data.xml";
+            CheckBetaStatus();
 
-            XmlReader betareader = XmlReader.Create(URLStringdata);
-            string beta = "off";
-            while (betareader.Read())
-            {
-                if ((betareader.NodeType == XmlNodeType.Element) && (betareader.Name == "beta"))
-                {
-                    beta = betareader.GetAttribute("online");
-                }
-            }
+            SaveXMLsToFiles();
 
-            if (beta == "off")
-            {
-                Betaoff();
-            }
+            SetLabelsToBlank();
 
-            if (File.Exists("prices.xml") == false)
-            {
-                XmlDocument doc = new XmlDocument();
-                XmlElement element1 = doc.CreateElement(string.Empty, "list", string.Empty);
-                doc.AppendChild(element1);
-                doc.Save("prices.xml");
-            }
-            XmlReader xmlReader = XmlReader.Create(URLStringitems);
-            while (xmlReader.Read())
-            {
-                if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "category"))
-                {
-                    xmlReader.Read();
-                    comboBoxCategory.Items.Add(xmlReader.Value.Replace("_", " "));
+            comboBoxCity.SelectedIndex = 0;
+            ReturnRate();
 
-                }
-            }
-            XmlReader xmlReader1 = XmlReader.Create(URLStringdata);
-            while (xmlReader1.Read())
-            {
-                if ((xmlReader1.NodeType == XmlNodeType.Element) && (xmlReader1.Name == "city"))
-                {
-                    xmlReader1.Read();
-                    comboBoxCity.Items.Add(xmlReader1.Value.Replace("_", " "));
+            Marketcheck();
+            Laborercheck();
 
-                }
-            }
+        }
+
+        private void SetLabelsToBlank()
+        {
             labelAll1.Text = "";
             labelAll2.Text = "";
             labelAll3.Text = "";
@@ -110,15 +82,10 @@ namespace Albion_RMT_Empire_Tool_v1
             labelAll5q.Text = "";
             labelAll6q.Text = "";
 
-            comboBoxCity.SelectedIndex = 0;
-            ReturnRate();
             labelCloth.Text = "Cloth: 0%";
             labelLeather.Text = "Lether: 0%";
             labelMetal.Text = "Metal Bar: 0%";
             labelPlanks.Text = "Planks: 0%";
-            Marketcheck();
-            Laborercheck();
-
         }
 
         private void AddToCart()
@@ -349,8 +316,7 @@ namespace Albion_RMT_Empire_Tool_v1
 
         private void ComboBoxSubCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String URLStringitems = "http://blamedevs.com/items.xml";
-            XmlReader xmlReader = XmlReader.Create(URLStringitems);
+            XmlReader xmlReader = XmlReader.Create(Constants.URLStringItems);
             comboBoxItem.Items.Clear();
             while (xmlReader.Read())
             {
@@ -367,9 +333,7 @@ namespace Albion_RMT_Empire_Tool_v1
 
         private void ItemReload()
         {
-            String URLStringitems = "http://blamedevs.com/items.xml";
-            String URLStringdata = "http://blamedevs.com/data.xml";
-            XmlReader xmlReader = XmlReader.Create(URLStringitems);
+            XmlReader xmlReader = customReader.GetItemsXml();//XmlReader.Create(Constants.URLStringItems);
             if (comboBoxItem.SelectedItem != null)
             {
                 Object Tier = comboBoxTier.SelectedItem;
@@ -400,7 +364,7 @@ namespace Albion_RMT_Empire_Tool_v1
                         {
                             pictureBox.Load("http://blamedevs.com/T1_TRASH.png");
                         }
-                        XmlReader xmlReaderload = XmlReader.Create(URLStringitems);
+                        XmlReader xmlReaderload = customReader.GetItemsXml();//XmlReader.Create(Constants.URLStringItems);
                         string tree = string.Empty;
                         string resource1 = string.Empty;
                         string resource2 = string.Empty;
@@ -412,7 +376,7 @@ namespace Albion_RMT_Empire_Tool_v1
                             resource1 = xmlReaderload.GetAttribute("resource1");
                             resource2 = xmlReaderload.GetAttribute("resource2");
                         }
-                        xmlReaderload = XmlReader.Create(URLStringdata);
+                        xmlReaderload = customReader.GetDataXml();//XmlReader.Create(Constants.URLStringData);
                         double cloth = 0;
                         double leather = 0;
                         double metal = 0;
@@ -524,8 +488,8 @@ namespace Albion_RMT_Empire_Tool_v1
                             pictureBoxResource2.Load("http://blamedevs.com/Rough_Stone.png");
                             textBoxResource2cost.Enabled = false;
                         }
-                        
-                        XmlReader xmlReadercity = XmlReader.Create(URLStringitems);
+
+                        XmlReader xmlReadercity = customReader.GetItemsXml();//XmlReader.Create(Constants.URLStringItems);
                         string city;
                         while (xmlReadercity.Read())
                         {
@@ -553,9 +517,7 @@ namespace Albion_RMT_Empire_Tool_v1
         {
             if (comboBoxItem.SelectedItem != null)
             {
-                String URLStringitems = "http://blamedevs.com/items.xml";
-                String URLStringdata = "http://blamedevs.com/data.xml";
-                XmlReader xmlReader = XmlReader.Create(URLStringdata);
+                XmlReader xmlReader = customReader.GetDataXml();
                 float modifier = 0;
                 float itemvalue = 0;
                 int journalcapacity = 0;
@@ -634,7 +596,7 @@ namespace Albion_RMT_Empire_Tool_v1
 
                 if (checkBoxLowerTierHouse.Checked == true || checkBoxSameTierHouse.Checked == true)
                 {
-                    XmlReader xmlReaderload = XmlReader.Create(URLStringitems);
+                    XmlReader xmlReaderload = customReader.GetItemsXml();
                     string tree = string.Empty;
                     string resource1 = string.Empty;
                     string resource2 = string.Empty;
@@ -662,7 +624,7 @@ namespace Albion_RMT_Empire_Tool_v1
                         }
                     }
 
-                    xmlReaderload = XmlReader.Create(URLStringdata);
+                    xmlReaderload = customReader.GetDataXml();
                     while (xmlReaderload.Read())
                     {
                         if (xmlReaderload.HasAttributes && xmlReaderload.Name == "journalreturnlowertier" && xmlReaderload.GetAttribute("tier") == comboBoxTier.SelectedItem.ToString() && xmlReaderload.GetAttribute("return") != null && xmlReaderload.GetAttribute("return") != "" && checkBoxLowerTierHouse.Checked == true)
@@ -781,7 +743,7 @@ namespace Albion_RMT_Empire_Tool_v1
             PriceReloadLaborers();
             Calculation();
         }
-
+        //merge
         private void CheckBoxLowerTierHouse_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxLowerTierHouse.Checked == true)
@@ -794,7 +756,7 @@ namespace Albion_RMT_Empire_Tool_v1
             PriceReloadLaborers();
             Calculation();
         }
-
+        //merge
         private void CheckBoxSameTierHouse_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxSameTierHouse.Checked == true)
@@ -868,7 +830,7 @@ namespace Albion_RMT_Empire_Tool_v1
         {
             Calculation();
         }
-
+        // merge ^ /
         private void TextBoxRRwithFocus_TextChanged(object sender, EventArgs e)
         {
             Calculation();
@@ -1159,8 +1121,7 @@ namespace Albion_RMT_Empire_Tool_v1
 
         private void ComboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String URLStringitems = "http://blamedevs.com/items.xml";
-            XmlReader xmlReader = XmlReader.Create(URLStringitems);
+            XmlReader xmlReader = customReader.GetItemsXml();
             Object Item = comboBoxCategory.SelectedItem;
             comboBoxSubCategory.Items.Clear();
             while (xmlReader.Read())
@@ -1177,6 +1138,55 @@ namespace Albion_RMT_Empire_Tool_v1
         {
             Transmutation transmutation = new Transmutation();
             transmutation.Show();
+        }
+
+        private void CheckBetaStatus()
+        {
+            XmlReader betareader = XmlReader.Create(Constants.URLStringData);
+            string beta = "off";
+            while (betareader.Read())
+            {
+                if ((betareader.NodeType == XmlNodeType.Element) && (betareader.Name == "beta"))
+                {
+                    beta = betareader.GetAttribute("online");
+                }
+            }
+
+            if (beta == "off")
+            {
+                Betaoff();
+            }
+        }
+
+        private void SaveXMLsToFiles()
+        {
+            if (File.Exists("prices.xml") == false)
+            {
+                XmlDocument doc = new XmlDocument();
+                XmlElement element1 = doc.CreateElement(string.Empty, "list", string.Empty);
+                doc.AppendChild(element1);
+                doc.Save("prices.xml");
+            }
+            XmlReader xmlReader = XmlReader.Create(Constants.URLStringItems);
+            while (xmlReader.Read())
+            {
+                if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "category"))
+                {
+                    xmlReader.Read();
+                    comboBoxCategory.Items.Add(xmlReader.Value.Replace("_", " "));
+
+                }
+            }
+            XmlReader xmlReader1 = XmlReader.Create(Constants.URLStringData);
+            while (xmlReader1.Read())
+            {
+                if ((xmlReader1.NodeType == XmlNodeType.Element) && (xmlReader1.Name == "city"))
+                {
+                    xmlReader1.Read();
+                    comboBoxCity.Items.Add(xmlReader1.Value.Replace("_", " "));
+
+                }
+            }
         }
     }
 }
