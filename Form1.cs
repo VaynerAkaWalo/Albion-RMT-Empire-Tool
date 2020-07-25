@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Globalization;
 using Albion_RMT_Empire_Tool_Beta;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Albion_RMT_Empire_Tool_v1
 {
@@ -98,6 +99,8 @@ namespace Albion_RMT_Empire_Tool_v1
             {
                 comboBoxCartItemSelection.Items.Add(items[i]);
             }
+
+            comboBoxCartItemSelection.Text = "Select item to delete";
         }
 
         private void ItemReload()
@@ -795,13 +798,21 @@ namespace Albion_RMT_Empire_Tool_v1
         {
             string itemname = labelItemName.Text;
             string resource1 = labelResource1.Text;
-            string resource2 = labelResource2.Text;
+            string resource2 = "nothing";
+            if (labelResource2.Text != "Rough Stone")
+            {
+                resource2 = labelResource2.Text;
+            }
 
             int itemq = int.Parse(textBoxQuantity.Text);
             int resource1q = int.Parse(labelQuantityResource1.Text);
             int resource2q = int.Parse(labelQuantityResource2.Text);
 
-            cart.AddtoCart(itemname, resource1, resource2, itemq, resource1q, resource2q);
+            int itemsellprice = int.Parse(textBoxItemSellingPrice.Text) * int.Parse(textBoxQuantity.Text);
+            int resourcecost = int.Parse(textBoxWithoutfocustotalcost.Text.Replace(",", ""));
+            int resourcecostfocus = int.Parse(textBoxWithfocustotalcost.Text.Replace(",", ""));
+
+            cart.AddtoCart(itemname, resource1, resource2, itemq, resource1q, resource2q, itemsellprice, resourcecost, resourcecostfocus);
             CartUpdate();
         }
 
@@ -932,6 +943,7 @@ namespace Albion_RMT_Empire_Tool_v1
             FillComboboxincart();
             textBoxCartResource.Text = cart.DisplayCartResource();
             textBoxCart.Text = cart.DisplayCart();
+            textBoxMoney.Text = cart.DisplayMoney();
         }
 
         private void buttonDeleteSelectedItem_Click(object sender, EventArgs e)

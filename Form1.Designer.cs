@@ -153,15 +153,8 @@
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.textBoxCartResource = new System.Windows.Forms.TextBox();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
-            this.textBoxTotalProfit = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.textBoxTotalProfitFocus = new System.Windows.Forms.TextBox();
-            this.textBoxTotalCost = new System.Windows.Forms.TextBox();
-            this.textBoxTotalSellPrice = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.buttonTransmutation = new System.Windows.Forms.Button();
+            this.textBoxMoney = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -1477,96 +1470,13 @@
             // 
             // groupBox17
             // 
-            this.groupBox17.Controls.Add(this.textBoxTotalProfit);
-            this.groupBox17.Controls.Add(this.label37);
-            this.groupBox17.Controls.Add(this.textBoxTotalProfitFocus);
-            this.groupBox17.Controls.Add(this.textBoxTotalCost);
-            this.groupBox17.Controls.Add(this.textBoxTotalSellPrice);
-            this.groupBox17.Controls.Add(this.label34);
-            this.groupBox17.Controls.Add(this.label33);
-            this.groupBox17.Controls.Add(this.label4);
+            this.groupBox17.Controls.Add(this.textBoxMoney);
             this.groupBox17.Location = new System.Drawing.Point(6, 441);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(228, 176);
             this.groupBox17.TabIndex = 0;
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "Money";
-            // 
-            // textBoxTotalProfit
-            // 
-            this.textBoxTotalProfit.Location = new System.Drawing.Point(105, 114);
-            this.textBoxTotalProfit.Name = "textBoxTotalProfit";
-            this.textBoxTotalProfit.ReadOnly = true;
-            this.textBoxTotalProfit.Size = new System.Drawing.Size(85, 25);
-            this.textBoxTotalProfit.TabIndex = 9;
-            this.textBoxTotalProfit.Text = "0";
-            this.textBoxTotalProfit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(7, 120);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(71, 17);
-            this.label37.TabIndex = 8;
-            this.label37.Text = "Total Profit";
-            // 
-            // textBoxTotalProfitFocus
-            // 
-            this.textBoxTotalProfitFocus.Location = new System.Drawing.Point(105, 145);
-            this.textBoxTotalProfitFocus.Name = "textBoxTotalProfitFocus";
-            this.textBoxTotalProfitFocus.ReadOnly = true;
-            this.textBoxTotalProfitFocus.Size = new System.Drawing.Size(85, 25);
-            this.textBoxTotalProfitFocus.TabIndex = 7;
-            this.textBoxTotalProfitFocus.Text = "0";
-            this.textBoxTotalProfitFocus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxTotalCost
-            // 
-            this.textBoxTotalCost.Location = new System.Drawing.Point(105, 79);
-            this.textBoxTotalCost.Name = "textBoxTotalCost";
-            this.textBoxTotalCost.ReadOnly = true;
-            this.textBoxTotalCost.Size = new System.Drawing.Size(85, 25);
-            this.textBoxTotalCost.TabIndex = 6;
-            this.textBoxTotalCost.Text = "0";
-            this.textBoxTotalCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBoxTotalSellPrice
-            // 
-            this.textBoxTotalSellPrice.Location = new System.Drawing.Point(105, 36);
-            this.textBoxTotalSellPrice.Name = "textBoxTotalSellPrice";
-            this.textBoxTotalSellPrice.ReadOnly = true;
-            this.textBoxTotalSellPrice.Size = new System.Drawing.Size(85, 25);
-            this.textBoxTotalSellPrice.TabIndex = 5;
-            this.textBoxTotalSellPrice.Text = "0";
-            this.textBoxTotalSellPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(7, 151);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(71, 17);
-            this.label34.TabIndex = 4;
-            this.label34.Text = "With Focus";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(7, 82);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(66, 17);
-            this.label33.TabIndex = 3;
-            this.label33.Text = "Total Cost";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 39);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 17);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Total Sell Price";
             // 
             // buttonTransmutation
             // 
@@ -1577,6 +1487,14 @@
             this.buttonTransmutation.Text = "Transmutation";
             this.buttonTransmutation.UseVisualStyleBackColor = true;
             this.buttonTransmutation.Click += new System.EventHandler(this.buttonTransmutation_Click);
+            // 
+            // textBoxMoney
+            // 
+            this.textBoxMoney.Location = new System.Drawing.Point(10, 23);
+            this.textBoxMoney.Multiline = true;
+            this.textBoxMoney.Name = "textBoxMoney";
+            this.textBoxMoney.Size = new System.Drawing.Size(212, 144);
+            this.textBoxMoney.TabIndex = 0;
             // 
             // Form1
             // 
@@ -1757,15 +1675,7 @@
         private System.Windows.Forms.Button buttonCloth;
         private System.Windows.Forms.GroupBox groupBoxCart;
         private System.Windows.Forms.GroupBox groupBox17;
-        private System.Windows.Forms.TextBox textBoxTotalProfitFocus;
-        private System.Windows.Forms.TextBox textBoxTotalCost;
-        private System.Windows.Forms.TextBox textBoxTotalSellPrice;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonAddToCart;
-        private System.Windows.Forms.TextBox textBoxTotalProfit;
-        private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Button buttonTransmutation;
         private System.Windows.Forms.TextBox textBoxCartResource;
         private System.Windows.Forms.TextBox textBoxCart;
@@ -1775,6 +1685,7 @@
         private System.Windows.Forms.Button buttonClearCart;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.TextBox textBoxMoney;
     }
 }
 

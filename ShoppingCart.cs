@@ -15,8 +15,11 @@ namespace Albion_RMT_Empire_Tool_Beta
         private List<string> Resource = new List<string>();
         private List<int> ResourceQuantity = new List<int>();
 
+        private List<int> ItemSellPrice = new List<int>();
+        private List<int> ResourceCost = new List<int>();
+        private List<int> ResourceCostFocus = new List<int>();
 
-        public void AddtoCart(string itemname, string resource1, string resource2, int itemq, int resource1q, int resource2q)
+        public void AddtoCart(string itemname, string resource1, string resource2, int itemq, int resource1q, int resource2q, int sellprice, int resourcecost, int resourcecostfocus)
         {
             int n = Item.Count;
             bool exist = false;
@@ -28,8 +31,14 @@ namespace Albion_RMT_Empire_Tool_Beta
                     {
                         ItemQuantity[i] += itemq;
                         int resourceindex = 2 * i;
+
                         ResourceQuantity[resourceindex] += resource1q;
                         ResourceQuantity[resourceindex + 1] += resource2q;
+
+                        ItemSellPrice[i] += sellprice;
+                        ResourceCost[i] += resourcecost;
+                        ResourceCostFocus[i] += resourcecostfocus;
+
                         exist = true;
                         break;
                     }
@@ -45,6 +54,10 @@ namespace Albion_RMT_Empire_Tool_Beta
 
                 ResourceQuantity.Add(resource1q);
                 ResourceQuantity.Add(resource2q);
+
+                ItemSellPrice.Add(sellprice);
+                ResourceCost.Add(resourcecost);
+                ResourceCostFocus.Add(resourcecostfocus);
             }
         }
 
@@ -53,32 +66,30 @@ namespace Albion_RMT_Empire_Tool_Beta
             int n = Item.Count;
             if (n > 0)
             {
+                int index = Item.FindIndex(x => x == name);
+                int resourceindex = index * 2;
+
+                Item[index] = "nothing";
+                ItemQuantity[index] = 0;
+
+                Resource[resourceindex] = "nothing";
+                Resource[resourceindex + 1] = "nothing";
+
+                ResourceQuantity[resourceindex] = 0;
+                ResourceQuantity[resourceindex + 1] = 0;
+
+                ItemSellPrice[index] = 0;
+                ResourceCost[index] = 0;
+                ResourceCostFocus[index] = 0;
+
                 if (Checkifempty() == true)
                 {
                     ClearCart();
                 }
-                else
-                {
-                    int index = Item.FindIndex(x => x == name);
-                    int resourceindex = index * 2;
-
-                    Item[index] = "nothing";
-                    ItemQuantity[index] = 0;
-
-                    Resource[resourceindex] = "nothing";
-                    Resource[resourceindex + 1] = "nothing";
-
-                    ResourceQuantity[resourceindex] = 0;
-                    ResourceQuantity[resourceindex + 1] = 0;
-
-                }
             }
         }
 
-        private bool Checkifempty()
-        {
-            return !Item.Exists(x => x != "nothing");
-        }
+        
 
         public void ClearCart()
         {
@@ -88,6 +99,8 @@ namespace Albion_RMT_Empire_Tool_Beta
             Resource.Clear();
             ResourceQuantity.Clear();
         }
+
+        
 
         public string DisplayCartResource()
         {
@@ -109,26 +122,7 @@ namespace Albion_RMT_Empire_Tool_Beta
                 }
             }
 
-            string tempname = "nothing";
-            int tempquantity = 0;
-
-            for (int k = 0; k < n; k++)
-            {
-                for (int l = 0; l < n; l++)
-                {
-                    if (k != l && ResourceQuantitySorted[k] > ResourceQuantitySorted[l])
-                    {
-                        tempname = ResourceSorted[k];
-                        tempquantity = ResourceQuantitySorted[k];
-
-                        ResourceSorted[k] = ResourceSorted[l];
-                        ResourceQuantitySorted[k] = ResourceQuantitySorted[l];
-
-                        ResourceSorted[l] = tempname;
-                        ResourceQuantitySorted[l] = tempquantity;
-                    }
-                }
-            }
+            Sort(ResourceSorted, ResourceQuantitySorted);
 
             string cart = "";
 
@@ -151,26 +145,7 @@ namespace Albion_RMT_Empire_Tool_Beta
             int n = ItemSorted.Count;
             string cart = "";
 
-            string tempname = "nothing";
-            int tempquantity = 0;
-
-            for (int k = 0; k < n; k++)
-            {
-                for (int l = 0; l < n; l++)
-                {
-                    if (k != l && ItemQuantitySorted[k] > ItemQuantitySorted[l])
-                    {
-                        tempname = ItemSorted[k];
-                        tempquantity = ItemQuantitySorted[k];
-
-                        ItemSorted[k] = ItemSorted[l];
-                        ItemQuantitySorted[k] = ItemQuantitySorted[l];
-
-                        ItemSorted[l] = tempname;
-                        ItemQuantitySorted[l] = tempquantity;
-                    }
-                }
-            }
+            Sort(ItemSorted, ItemQuantitySorted);
 
             for (int i = 0; i < n; i++)
             {
@@ -183,6 +158,26 @@ namespace Albion_RMT_Empire_Tool_Beta
             return cart;
         }
 
+        public string DisplayMoney()
+        {
+            string money = "";
+
+            int totalcost = Counting(ResourceCost);
+            int totalcostfocus = Counting(ResourceCostFocus);
+            int sellprice = Counting(ItemSellPrice);
+
+            int profit = sellprice - totalcost;
+            int profitfocus = sellprice - totalcostfocus;
+
+            money = "Total sell price: " + sellprice.ToString() + "\r\n" + "\r\n";
+
+            money += "Total cost without focus: " + totalcost.ToString() + "\r\n";
+            money += "Total profit without focus: " + profit.ToString() + "\r\n" + "\r\n";
+
+            money += "Total cost with focus: " + totalcostfocus.ToString() + "\r\n";
+            money += "Total profit with focus: " + profitfocus.ToString() + "\r\n" + "\r\n";
+            return money;
+        }
 
         public List<string> OnlyItems()
         {
@@ -192,6 +187,47 @@ namespace Albion_RMT_Empire_Tool_Beta
             return list;
         }
 
-        
+        private bool Checkifempty()
+        {
+            return !Item.Exists(x => x != "nothing");
+        }
+
+        private void Sort(List<string> stringlist, List<int> intlist)
+        {
+            int n = stringlist.Count;
+
+            string tempname = "nothing";
+            int tempquantity = 0;
+
+            for (int k = 0; k < n; k++)
+            {
+                for (int l = 0; l < n; l++)
+                {
+                    if (k != l && intlist[k] > intlist[l])
+                    {
+                        tempname = stringlist[k];
+                        tempquantity = intlist[k];
+
+                        stringlist[k] = stringlist[l];
+                        intlist[k] = intlist[l];
+
+                        stringlist[l] = tempname;
+                        intlist[l] = tempquantity;
+                    }
+                }
+            }
+        }
+
+        private int Counting(List<int> list)
+        {
+            int total = 0;
+
+            foreach (int i in list)
+            {
+                total += i;
+            }
+
+            return total;
+        }
     }
 }
