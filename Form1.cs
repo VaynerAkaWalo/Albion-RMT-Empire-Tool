@@ -13,6 +13,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Globalization;
 using Albion_RMT_Empire_Tool_Beta;
+using System.Collections.Generic;
 
 namespace Albion_RMT_Empire_Tool_v1
 {
@@ -60,7 +61,6 @@ namespace Albion_RMT_Empire_Tool_v1
 
             SaveXMLsToFiles();
 
-            SetLabelsToBlank();
 
             comboBoxCity.SelectedIndex = 0;
             ReturnRate();
@@ -70,13 +70,6 @@ namespace Albion_RMT_Empire_Tool_v1
 
         }
 
-        private void SetLabelsToBlank()
-        {
-            labelCloth.Text = "Cloth: 0%";
-            labelLeather.Text = "Lether: 0%";
-            labelMetal.Text = "Metal Bar: 0%";
-            labelPlanks.Text = "Planks: 0%";
-        }
 
 
         private void ComboBoxSubCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,7 +87,18 @@ namespace Albion_RMT_Empire_Tool_v1
 
         }
 
+        private void FillComboboxincart()
+        {
+            List<string> items = new List<string>(cart.OnlyItems());
+            int n = items.Count;
 
+            comboBoxCartItemSelection.Items.Clear();
+
+            for(int i = 0; i < n; i++)
+            {
+                comboBoxCartItemSelection.Items.Add(items[i]);
+            }
+        }
 
         private void ItemReload()
         {
@@ -798,28 +802,10 @@ namespace Albion_RMT_Empire_Tool_v1
             int resource2q = int.Parse(labelQuantityResource2.Text);
 
             cart.AddtoCart(itemname, resource1, resource2, itemq, resource1q, resource2q);
-            textBoxCartResource.Text = cart.DisplayCart();
+            CartUpdate();
         }
 
-        private void ButtonClear1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void ButtonClear2_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void ButtonClear3_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void ButtonClearAll_Click(object sender, EventArgs e)
-        {
-            
-        }
+      
 
         private bool IsUrlExist(string url)
         {
@@ -933,6 +919,28 @@ namespace Albion_RMT_Empire_Tool_v1
 
                 }
             }
+        }
+
+        private void buttonClearCart_Click(object sender, EventArgs e)
+        {
+            cart.ClearCart();
+            CartUpdate();
+        }
+
+        private void CartUpdate()
+        {
+            FillComboboxincart();
+            textBoxCartResource.Text = cart.DisplayCartResource();
+            textBoxCart.Text = cart.DisplayCart();
+        }
+
+        private void buttonDeleteSelectedItem_Click(object sender, EventArgs e)
+        {
+            if (comboBoxCartItemSelection.SelectedItem != null)
+            {
+                cart.ClearItem(comboBoxCartItemSelection.SelectedItem.ToString());
+            }
+            CartUpdate();
         }
     }
 }

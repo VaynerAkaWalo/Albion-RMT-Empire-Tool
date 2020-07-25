@@ -59,7 +59,6 @@
             this.checkBoxLowerTierHouse = new System.Windows.Forms.CheckBox();
             this.checkBoxMarket = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.buttonAddToCart = new System.Windows.Forms.Button();
             this.textBoxQuantity = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -73,6 +72,7 @@
             this.label29 = new System.Windows.Forms.Label();
             this.textBoxItemSellingPrice = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
+            this.buttonAddToCart = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.buttonResource2 = new System.Windows.Forms.Button();
             this.buttonResource1 = new System.Windows.Forms.Button();
@@ -144,6 +144,14 @@
             this.labelExpectedRRwithoutfocusresource1 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.groupBoxCart = new System.Windows.Forms.GroupBox();
+            this.checkBoxReduction = new System.Windows.Forms.CheckBox();
+            this.buttonDeleteSelectedItem = new System.Windows.Forms.Button();
+            this.comboBoxCartItemSelection = new System.Windows.Forms.ComboBox();
+            this.buttonClearCart = new System.Windows.Forms.Button();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.textBoxCart = new System.Windows.Forms.TextBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.textBoxCartResource = new System.Windows.Forms.TextBox();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.textBoxTotalProfit = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
@@ -154,8 +162,6 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonTransmutation = new System.Windows.Forms.Button();
-            this.textBoxCart = new System.Windows.Forms.TextBox();
-            this.textBoxCartResource = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -174,6 +180,8 @@
             this.groupBoxLaborers.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBoxCart.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.groupBox17.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -490,7 +498,6 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.buttonAddToCart);
             this.groupBox5.Controls.Add(this.textBoxQuantity);
             this.groupBox5.Controls.Add(this.label17);
             this.groupBox5.Controls.Add(this.groupBox6);
@@ -502,16 +509,6 @@
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Selected Item";
-            // 
-            // buttonAddToCart
-            // 
-            this.buttonAddToCart.Location = new System.Drawing.Point(284, 20);
-            this.buttonAddToCart.Name = "buttonAddToCart";
-            this.buttonAddToCart.Size = new System.Drawing.Size(89, 23);
-            this.buttonAddToCart.TabIndex = 21;
-            this.buttonAddToCart.Text = "Add to Cart";
-            this.buttonAddToCart.UseVisualStyleBackColor = true;
-            this.buttonAddToCart.Click += new System.EventHandler(this.ButtonAddToCart_Click);
             // 
             // textBoxQuantity
             // 
@@ -645,6 +642,16 @@
             this.label28.Size = new System.Drawing.Size(107, 17);
             this.label28.TabIndex = 15;
             this.label28.Text = "Item Selling Price";
+            // 
+            // buttonAddToCart
+            // 
+            this.buttonAddToCart.Location = new System.Drawing.Point(16, 19);
+            this.buttonAddToCart.Name = "buttonAddToCart";
+            this.buttonAddToCart.Size = new System.Drawing.Size(89, 23);
+            this.buttonAddToCart.TabIndex = 21;
+            this.buttonAddToCart.Text = "Add to Cart";
+            this.buttonAddToCart.UseVisualStyleBackColor = true;
+            this.buttonAddToCart.Click += new System.EventHandler(this.ButtonAddToCart_Click);
             // 
             // groupBox7
             // 
@@ -999,36 +1006,36 @@
             this.labelPlanks.AutoSize = true;
             this.labelPlanks.Location = new System.Drawing.Point(99, 93);
             this.labelPlanks.Name = "labelPlanks";
-            this.labelPlanks.Size = new System.Drawing.Size(44, 17);
+            this.labelPlanks.Size = new System.Drawing.Size(69, 17);
             this.labelPlanks.TabIndex = 18;
-            this.labelPlanks.Text = "Planks";
+            this.labelPlanks.Text = "Planks: 0%";
             // 
             // labelMetal
             // 
             this.labelMetal.AutoSize = true;
             this.labelMetal.Location = new System.Drawing.Point(99, 76);
             this.labelMetal.Name = "labelMetal";
-            this.labelMetal.Size = new System.Drawing.Size(64, 17);
+            this.labelMetal.Size = new System.Drawing.Size(89, 17);
             this.labelMetal.TabIndex = 17;
-            this.labelMetal.Text = "Metal Bar";
+            this.labelMetal.Text = "Metal Bar: 0%";
             // 
             // labelLeather
             // 
             this.labelLeather.AutoSize = true;
             this.labelLeather.Location = new System.Drawing.Point(99, 59);
             this.labelLeather.Name = "labelLeather";
-            this.labelLeather.Size = new System.Drawing.Size(51, 17);
+            this.labelLeather.Size = new System.Drawing.Size(69, 17);
             this.labelLeather.TabIndex = 16;
-            this.labelLeather.Text = "Leather";
+            this.labelLeather.Text = "Lether: 0%";
             // 
             // labelCloth
             // 
             this.labelCloth.AutoSize = true;
             this.labelCloth.Location = new System.Drawing.Point(99, 40);
             this.labelCloth.Name = "labelCloth";
-            this.labelCloth.Size = new System.Drawing.Size(38, 17);
+            this.labelCloth.Size = new System.Drawing.Size(63, 17);
             this.labelCloth.TabIndex = 15;
-            this.labelCloth.Text = "Cloth";
+            this.labelCloth.Text = "Cloth: 0%";
             // 
             // groupBoxMarket
             // 
@@ -1376,8 +1383,13 @@
             // 
             // groupBoxCart
             // 
-            this.groupBoxCart.Controls.Add(this.textBoxCartResource);
-            this.groupBoxCart.Controls.Add(this.textBoxCart);
+            this.groupBoxCart.Controls.Add(this.checkBoxReduction);
+            this.groupBoxCart.Controls.Add(this.buttonDeleteSelectedItem);
+            this.groupBoxCart.Controls.Add(this.comboBoxCartItemSelection);
+            this.groupBoxCart.Controls.Add(this.buttonClearCart);
+            this.groupBoxCart.Controls.Add(this.buttonAddToCart);
+            this.groupBoxCart.Controls.Add(this.groupBox13);
+            this.groupBoxCart.Controls.Add(this.groupBox11);
             this.groupBoxCart.Controls.Add(this.groupBox17);
             this.groupBoxCart.Location = new System.Drawing.Point(932, 19);
             this.groupBoxCart.Name = "groupBoxCart";
@@ -1385,6 +1397,83 @@
             this.groupBoxCart.TabIndex = 20;
             this.groupBoxCart.TabStop = false;
             this.groupBoxCart.Text = "Cart";
+            // 
+            // checkBoxReduction
+            // 
+            this.checkBoxReduction.AutoSize = true;
+            this.checkBoxReduction.Enabled = false;
+            this.checkBoxReduction.Location = new System.Drawing.Point(16, 129);
+            this.checkBoxReduction.Name = "checkBoxReduction";
+            this.checkBoxReduction.Size = new System.Drawing.Size(160, 21);
+            this.checkBoxReduction.TabIndex = 25;
+            this.checkBoxReduction.Text = "Reduce by Return Rate";
+            this.checkBoxReduction.UseVisualStyleBackColor = true;
+            // 
+            // buttonDeleteSelectedItem
+            // 
+            this.buttonDeleteSelectedItem.Location = new System.Drawing.Point(16, 92);
+            this.buttonDeleteSelectedItem.Name = "buttonDeleteSelectedItem";
+            this.buttonDeleteSelectedItem.Size = new System.Drawing.Size(212, 23);
+            this.buttonDeleteSelectedItem.TabIndex = 24;
+            this.buttonDeleteSelectedItem.Text = "Delete Selected Item";
+            this.buttonDeleteSelectedItem.UseVisualStyleBackColor = true;
+            this.buttonDeleteSelectedItem.Click += new System.EventHandler(this.buttonDeleteSelectedItem_Click);
+            // 
+            // comboBoxCartItemSelection
+            // 
+            this.comboBoxCartItemSelection.FormattingEnabled = true;
+            this.comboBoxCartItemSelection.Location = new System.Drawing.Point(16, 61);
+            this.comboBoxCartItemSelection.Name = "comboBoxCartItemSelection";
+            this.comboBoxCartItemSelection.Size = new System.Drawing.Size(212, 25);
+            this.comboBoxCartItemSelection.TabIndex = 23;
+            // 
+            // buttonClearCart
+            // 
+            this.buttonClearCart.Location = new System.Drawing.Point(139, 20);
+            this.buttonClearCart.Name = "buttonClearCart";
+            this.buttonClearCart.Size = new System.Drawing.Size(89, 23);
+            this.buttonClearCart.TabIndex = 22;
+            this.buttonClearCart.Text = "Clear Cart";
+            this.buttonClearCart.UseVisualStyleBackColor = true;
+            this.buttonClearCart.Click += new System.EventHandler(this.buttonClearCart_Click);
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.textBoxCart);
+            this.groupBox13.Location = new System.Drawing.Point(6, 162);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(228, 130);
+            this.groupBox13.TabIndex = 21;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Items";
+            // 
+            // textBoxCart
+            // 
+            this.textBoxCart.Location = new System.Drawing.Point(10, 21);
+            this.textBoxCart.Multiline = true;
+            this.textBoxCart.Name = "textBoxCart";
+            this.textBoxCart.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxCart.Size = new System.Drawing.Size(212, 103);
+            this.textBoxCart.TabIndex = 10;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.textBoxCartResource);
+            this.groupBox11.Location = new System.Drawing.Point(6, 288);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(228, 154);
+            this.groupBox11.TabIndex = 21;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Resources";
+            // 
+            // textBoxCartResource
+            // 
+            this.textBoxCartResource.Location = new System.Drawing.Point(10, 22);
+            this.textBoxCartResource.Multiline = true;
+            this.textBoxCartResource.Name = "textBoxCartResource";
+            this.textBoxCartResource.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxCartResource.Size = new System.Drawing.Size(212, 125);
+            this.textBoxCartResource.TabIndex = 11;
             // 
             // groupBox17
             // 
@@ -1489,22 +1578,6 @@
             this.buttonTransmutation.UseVisualStyleBackColor = true;
             this.buttonTransmutation.Click += new System.EventHandler(this.buttonTransmutation_Click);
             // 
-            // textBoxCart
-            // 
-            this.textBoxCart.Location = new System.Drawing.Point(6, 24);
-            this.textBoxCart.Multiline = true;
-            this.textBoxCart.Name = "textBoxCart";
-            this.textBoxCart.Size = new System.Drawing.Size(228, 191);
-            this.textBoxCart.TabIndex = 10;
-            // 
-            // textBoxCartResource
-            // 
-            this.textBoxCartResource.Location = new System.Drawing.Point(6, 221);
-            this.textBoxCartResource.Multiline = true;
-            this.textBoxCartResource.Name = "textBoxCartResource";
-            this.textBoxCartResource.Size = new System.Drawing.Size(228, 214);
-            this.textBoxCartResource.TabIndex = 11;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -1557,6 +1630,10 @@
             this.groupBox12.PerformLayout();
             this.groupBoxCart.ResumeLayout(false);
             this.groupBoxCart.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.groupBox17.ResumeLayout(false);
             this.groupBox17.PerformLayout();
             this.ResumeLayout(false);
@@ -1692,6 +1769,12 @@
         private System.Windows.Forms.Button buttonTransmutation;
         private System.Windows.Forms.TextBox textBoxCartResource;
         private System.Windows.Forms.TextBox textBoxCart;
+        private System.Windows.Forms.CheckBox checkBoxReduction;
+        private System.Windows.Forms.Button buttonDeleteSelectedItem;
+        private System.Windows.Forms.ComboBox comboBoxCartItemSelection;
+        private System.Windows.Forms.Button buttonClearCart;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.GroupBox groupBox11;
     }
 }
 

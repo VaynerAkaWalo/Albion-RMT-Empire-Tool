@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Albion_RMT_Empire_Tool_Beta
@@ -27,8 +28,8 @@ namespace Albion_RMT_Empire_Tool_Beta
                     {
                         ItemQuantity[i] += itemq;
                         int resourceindex = 2 * i;
-                        ResourceQuantity[resourceindex] = resource2q;
-                        ResourceQuantity[resourceindex - 1] = resource1q;
+                        ResourceQuantity[resourceindex] += resource1q;
+                        ResourceQuantity[resourceindex + 1] += resource2q;
                         exist = true;
                         break;
                     }
@@ -47,9 +48,36 @@ namespace Albion_RMT_Empire_Tool_Beta
             }
         }
 
-        public void ClearItem()
+        public void ClearItem(string name)
         {
+            int n = Item.Count;
+            if (n > 0)
+            {
+                if (Checkifempty() == true)
+                {
+                    ClearCart();
+                }
+                else
+                {
+                    int index = Item.FindIndex(x => x == name);
+                    int resourceindex = index * 2;
 
+                    Item[index] = "nothing";
+                    ItemQuantity[index] = 0;
+
+                    Resource[resourceindex] = "nothing";
+                    Resource[resourceindex + 1] = "nothing";
+
+                    ResourceQuantity[resourceindex] = 0;
+                    ResourceQuantity[resourceindex + 1] = 0;
+
+                }
+            }
+        }
+
+        private bool Checkifempty()
+        {
+            return !Item.Exists(x => x != "nothing");
         }
 
         public void ClearCart()
@@ -61,7 +89,7 @@ namespace Albion_RMT_Empire_Tool_Beta
             ResourceQuantity.Clear();
         }
 
-        public string DisplayCart()
+        public string DisplayCartResource()
         {
             List<string> ResourceSorted = new List<string>(Resource);
             List<int> ResourceQuantitySorted = new List<int>(ResourceQuantity);
@@ -114,5 +142,56 @@ namespace Albion_RMT_Empire_Tool_Beta
 
             return cart;
         }
+
+        public string DisplayCart()
+        {
+            List<string> ItemSorted = new List<string>(Item);
+            List<int> ItemQuantitySorted = new List<int>(ItemQuantity);
+
+            int n = ItemSorted.Count;
+            string cart = "";
+
+            string tempname = "nothing";
+            int tempquantity = 0;
+
+            for (int k = 0; k < n; k++)
+            {
+                for (int l = 0; l < n; l++)
+                {
+                    if (k != l && ItemQuantitySorted[k] > ItemQuantitySorted[l])
+                    {
+                        tempname = ItemSorted[k];
+                        tempquantity = ItemQuantitySorted[k];
+
+                        ItemSorted[k] = ItemSorted[l];
+                        ItemQuantitySorted[k] = ItemQuantitySorted[l];
+
+                        ItemSorted[l] = tempname;
+                        ItemQuantitySorted[l] = tempquantity;
+                    }
+                }
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                if (ItemSorted[i] != "nothing")
+                {
+                    cart += ItemSorted[i] + ": " + ItemQuantitySorted[i] + "\r\n";
+                }
+            }
+
+            return cart;
+        }
+
+
+        public List<string> OnlyItems()
+        {
+            List<string> list = new List<string>(Item);
+            list.RemoveAll(x => x == "nothing");
+
+            return list;
+        }
+
+        
     }
 }
