@@ -88,7 +88,7 @@ namespace Albion_RMT_Empire_Tool_Beta
             {
                 for (int l = 0; l < n; l++)
                 {
-                    if (k != l && ResourceQuantitySorted[k] < ResourceQuantitySorted[l])
+                    if (k != l && ResourceQuantitySorted[k] > ResourceQuantitySorted[l])
                     {
                         tempname = ResourceSorted[k];
                         tempquantity = ResourceQuantitySorted[k];
@@ -108,7 +108,7 @@ namespace Albion_RMT_Empire_Tool_Beta
             {
                 if (ResourceSorted[o] != "nothing")
                 {
-                    cart += ResourceSorted[o] + ": " + ResourceQuantitySorted[o] + "\n";
+                    cart += ResourceSorted[o] + ": " + ResourceQuantitySorted[o] + "\r\n";
                 }
             }
 

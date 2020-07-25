@@ -144,8 +144,6 @@
             this.labelExpectedRRwithoutfocusresource1 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.groupBoxCart = new System.Windows.Forms.GroupBox();
-            this.buttonClearAll = new System.Windows.Forms.Button();
-            this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.textBoxTotalProfit = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
@@ -155,40 +153,9 @@
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.labelAll6q = new System.Windows.Forms.Label();
-            this.labelAll5q = new System.Windows.Forms.Label();
-            this.labelAll4q = new System.Windows.Forms.Label();
-            this.labelAll3q = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.labelAll2q = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.labelAll1q = new System.Windows.Forms.Label();
-            this.labelAll6 = new System.Windows.Forms.Label();
-            this.labelAll5 = new System.Windows.Forms.Label();
-            this.labelAll4 = new System.Windows.Forms.Label();
-            this.labelAll3 = new System.Windows.Forms.Label();
-            this.labelAll2 = new System.Windows.Forms.Label();
-            this.labelAll1 = new System.Windows.Forms.Label();
-            this.groupBoxCart3 = new System.Windows.Forms.GroupBox();
-            this.labelCart3resource2q = new System.Windows.Forms.Label();
-            this.labelCart3resource1q = new System.Windows.Forms.Label();
-            this.buttonClear3 = new System.Windows.Forms.Button();
-            this.labelCart3resource2 = new System.Windows.Forms.Label();
-            this.labelCart3resource1 = new System.Windows.Forms.Label();
-            this.groupBoxCart2 = new System.Windows.Forms.GroupBox();
-            this.labelCart2resource2q = new System.Windows.Forms.Label();
-            this.labelCart2resource1q = new System.Windows.Forms.Label();
-            this.buttonClear2 = new System.Windows.Forms.Button();
-            this.labelCart2resource2 = new System.Windows.Forms.Label();
-            this.labelCart2resource1 = new System.Windows.Forms.Label();
-            this.groupBoxCart1 = new System.Windows.Forms.GroupBox();
-            this.labelCart1resource2q = new System.Windows.Forms.Label();
-            this.labelCart1resource1q = new System.Windows.Forms.Label();
-            this.buttonClear1 = new System.Windows.Forms.Button();
-            this.labelCart1resource2 = new System.Windows.Forms.Label();
-            this.labelCart1resource1 = new System.Windows.Forms.Label();
             this.buttonTransmutation = new System.Windows.Forms.Button();
+            this.textBoxCart = new System.Windows.Forms.TextBox();
+            this.textBoxCartResource = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -207,12 +174,7 @@
             this.groupBoxLaborers.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBoxCart.SuspendLayout();
-            this.groupBox15.SuspendLayout();
             this.groupBox17.SuspendLayout();
-            this.groupBox16.SuspendLayout();
-            this.groupBoxCart3.SuspendLayout();
-            this.groupBoxCart2.SuspendLayout();
-            this.groupBoxCart1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -1414,38 +1376,15 @@
             // 
             // groupBoxCart
             // 
-            this.groupBoxCart.Controls.Add(this.buttonClearAll);
-            this.groupBoxCart.Controls.Add(this.groupBox15);
-            this.groupBoxCart.Controls.Add(this.groupBoxCart3);
-            this.groupBoxCart.Controls.Add(this.groupBoxCart2);
-            this.groupBoxCart.Controls.Add(this.groupBoxCart1);
+            this.groupBoxCart.Controls.Add(this.textBoxCartResource);
+            this.groupBoxCart.Controls.Add(this.textBoxCart);
+            this.groupBoxCart.Controls.Add(this.groupBox17);
             this.groupBoxCart.Location = new System.Drawing.Point(932, 19);
             this.groupBoxCart.Name = "groupBoxCart";
             this.groupBoxCart.Size = new System.Drawing.Size(240, 623);
             this.groupBoxCart.TabIndex = 20;
             this.groupBoxCart.TabStop = false;
             this.groupBoxCart.Text = "Cart";
-            // 
-            // buttonClearAll
-            // 
-            this.buttonClearAll.Location = new System.Drawing.Point(160, 0);
-            this.buttonClearAll.Name = "buttonClearAll";
-            this.buttonClearAll.Size = new System.Drawing.Size(68, 23);
-            this.buttonClearAll.TabIndex = 0;
-            this.buttonClearAll.Text = "Clear All";
-            this.buttonClearAll.UseVisualStyleBackColor = true;
-            this.buttonClearAll.Click += new System.EventHandler(this.ButtonClearAll_Click);
-            // 
-            // groupBox15
-            // 
-            this.groupBox15.Controls.Add(this.groupBox17);
-            this.groupBox15.Controls.Add(this.groupBox16);
-            this.groupBox15.Location = new System.Drawing.Point(6, 276);
-            this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(228, 341);
-            this.groupBox15.TabIndex = 0;
-            this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "All Together";
             // 
             // groupBox17
             // 
@@ -1457,9 +1396,9 @@
             this.groupBox17.Controls.Add(this.label34);
             this.groupBox17.Controls.Add(this.label33);
             this.groupBox17.Controls.Add(this.label4);
-            this.groupBox17.Location = new System.Drawing.Point(9, 159);
+            this.groupBox17.Location = new System.Drawing.Point(6, 441);
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(213, 176);
+            this.groupBox17.Size = new System.Drawing.Size(228, 176);
             this.groupBox17.TabIndex = 0;
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "Money";
@@ -1540,353 +1479,6 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Total Sell Price";
             // 
-            // groupBox16
-            // 
-            this.groupBox16.Controls.Add(this.labelAll6q);
-            this.groupBox16.Controls.Add(this.labelAll5q);
-            this.groupBox16.Controls.Add(this.labelAll4q);
-            this.groupBox16.Controls.Add(this.labelAll3q);
-            this.groupBox16.Controls.Add(this.label38);
-            this.groupBox16.Controls.Add(this.labelAll2q);
-            this.groupBox16.Controls.Add(this.label36);
-            this.groupBox16.Controls.Add(this.labelAll1q);
-            this.groupBox16.Controls.Add(this.labelAll6);
-            this.groupBox16.Controls.Add(this.labelAll5);
-            this.groupBox16.Controls.Add(this.labelAll4);
-            this.groupBox16.Controls.Add(this.labelAll3);
-            this.groupBox16.Controls.Add(this.labelAll2);
-            this.groupBox16.Controls.Add(this.labelAll1);
-            this.groupBox16.Location = new System.Drawing.Point(3, 21);
-            this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(219, 128);
-            this.groupBox16.TabIndex = 0;
-            this.groupBox16.TabStop = false;
-            this.groupBox16.Text = "Resources Quantity";
-            // 
-            // labelAll6q
-            // 
-            this.labelAll6q.Location = new System.Drawing.Point(95, 106);
-            this.labelAll6q.Name = "labelAll6q";
-            this.labelAll6q.Size = new System.Drawing.Size(50, 20);
-            this.labelAll6q.TabIndex = 28;
-            this.labelAll6q.Tag = "0";
-            this.labelAll6q.Text = "0";
-            this.labelAll6q.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // labelAll5q
-            // 
-            this.labelAll5q.Location = new System.Drawing.Point(95, 89);
-            this.labelAll5q.Name = "labelAll5q";
-            this.labelAll5q.Size = new System.Drawing.Size(50, 20);
-            this.labelAll5q.TabIndex = 27;
-            this.labelAll5q.Tag = "0";
-            this.labelAll5q.Text = "0";
-            this.labelAll5q.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // labelAll4q
-            // 
-            this.labelAll4q.Location = new System.Drawing.Point(95, 70);
-            this.labelAll4q.Name = "labelAll4q";
-            this.labelAll4q.Size = new System.Drawing.Size(50, 20);
-            this.labelAll4q.TabIndex = 26;
-            this.labelAll4q.Tag = "0";
-            this.labelAll4q.Text = "0";
-            this.labelAll4q.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // labelAll3q
-            // 
-            this.labelAll3q.Location = new System.Drawing.Point(95, 55);
-            this.labelAll3q.Name = "labelAll3q";
-            this.labelAll3q.Size = new System.Drawing.Size(50, 20);
-            this.labelAll3q.TabIndex = 25;
-            this.labelAll3q.Tag = "0";
-            this.labelAll3q.Text = "0";
-            this.labelAll3q.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label38
-            // 
-            this.label38.Location = new System.Drawing.Point(92, 62);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(50, 20);
-            this.label38.TabIndex = 25;
-            this.label38.Tag = "0";
-            this.label38.Text = "0";
-            this.label38.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // labelAll2q
-            // 
-            this.labelAll2q.Location = new System.Drawing.Point(95, 38);
-            this.labelAll2q.Name = "labelAll2q";
-            this.labelAll2q.Size = new System.Drawing.Size(50, 20);
-            this.labelAll2q.TabIndex = 24;
-            this.labelAll2q.Tag = "0";
-            this.labelAll2q.Text = "0";
-            this.labelAll2q.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label36
-            // 
-            this.label36.Location = new System.Drawing.Point(84, 54);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(50, 20);
-            this.label36.TabIndex = 24;
-            this.label36.Tag = "0";
-            this.label36.Text = "0";
-            this.label36.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // labelAll1q
-            // 
-            this.labelAll1q.Location = new System.Drawing.Point(95, 21);
-            this.labelAll1q.Name = "labelAll1q";
-            this.labelAll1q.Size = new System.Drawing.Size(50, 20);
-            this.labelAll1q.TabIndex = 23;
-            this.labelAll1q.Tag = "0";
-            this.labelAll1q.Text = "0";
-            this.labelAll1q.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // labelAll6
-            // 
-            this.labelAll6.AutoSize = true;
-            this.labelAll6.Location = new System.Drawing.Point(6, 106);
-            this.labelAll6.Name = "labelAll6";
-            this.labelAll6.Size = new System.Drawing.Size(69, 17);
-            this.labelAll6.TabIndex = 5;
-            this.labelAll6.Tag = "0";
-            this.labelAll6.Text = "Resource6";
-            // 
-            // labelAll5
-            // 
-            this.labelAll5.AutoSize = true;
-            this.labelAll5.Location = new System.Drawing.Point(6, 89);
-            this.labelAll5.Name = "labelAll5";
-            this.labelAll5.Size = new System.Drawing.Size(69, 17);
-            this.labelAll5.TabIndex = 4;
-            this.labelAll5.Tag = "0";
-            this.labelAll5.Text = "Resource5";
-            // 
-            // labelAll4
-            // 
-            this.labelAll4.AutoSize = true;
-            this.labelAll4.Location = new System.Drawing.Point(6, 72);
-            this.labelAll4.Name = "labelAll4";
-            this.labelAll4.Size = new System.Drawing.Size(69, 17);
-            this.labelAll4.TabIndex = 3;
-            this.labelAll4.Tag = "0";
-            this.labelAll4.Text = "Resource4";
-            // 
-            // labelAll3
-            // 
-            this.labelAll3.AutoSize = true;
-            this.labelAll3.Location = new System.Drawing.Point(6, 55);
-            this.labelAll3.Name = "labelAll3";
-            this.labelAll3.Size = new System.Drawing.Size(69, 17);
-            this.labelAll3.TabIndex = 2;
-            this.labelAll3.Tag = "0";
-            this.labelAll3.Text = "Resource3";
-            // 
-            // labelAll2
-            // 
-            this.labelAll2.AutoSize = true;
-            this.labelAll2.Location = new System.Drawing.Point(6, 38);
-            this.labelAll2.Name = "labelAll2";
-            this.labelAll2.Size = new System.Drawing.Size(69, 17);
-            this.labelAll2.TabIndex = 1;
-            this.labelAll2.Tag = "0";
-            this.labelAll2.Text = "Resource2";
-            // 
-            // labelAll1
-            // 
-            this.labelAll1.AutoSize = true;
-            this.labelAll1.Location = new System.Drawing.Point(6, 21);
-            this.labelAll1.Name = "labelAll1";
-            this.labelAll1.Size = new System.Drawing.Size(69, 17);
-            this.labelAll1.TabIndex = 0;
-            this.labelAll1.Tag = "0";
-            this.labelAll1.Text = "Resource1";
-            // 
-            // groupBoxCart3
-            // 
-            this.groupBoxCart3.Controls.Add(this.labelCart3resource2q);
-            this.groupBoxCart3.Controls.Add(this.labelCart3resource1q);
-            this.groupBoxCart3.Controls.Add(this.buttonClear3);
-            this.groupBoxCart3.Controls.Add(this.labelCart3resource2);
-            this.groupBoxCart3.Controls.Add(this.labelCart3resource1);
-            this.groupBoxCart3.Location = new System.Drawing.Point(6, 191);
-            this.groupBoxCart3.Name = "groupBoxCart3";
-            this.groupBoxCart3.Size = new System.Drawing.Size(228, 79);
-            this.groupBoxCart3.TabIndex = 1;
-            this.groupBoxCart3.TabStop = false;
-            this.groupBoxCart3.Tag = "0";
-            this.groupBoxCart3.Text = "Nothing";
-            // 
-            // labelCart3resource2q
-            // 
-            this.labelCart3resource2q.Location = new System.Drawing.Point(98, 47);
-            this.labelCart3resource2q.Name = "labelCart3resource2q";
-            this.labelCart3resource2q.Size = new System.Drawing.Size(50, 20);
-            this.labelCart3resource2q.TabIndex = 22;
-            this.labelCart3resource2q.Tag = "0";
-            this.labelCart3resource2q.Text = "0";
-            this.labelCart3resource2q.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // labelCart3resource1q
-            // 
-            this.labelCart3resource1q.Location = new System.Drawing.Point(98, 30);
-            this.labelCart3resource1q.Name = "labelCart3resource1q";
-            this.labelCart3resource1q.Size = new System.Drawing.Size(50, 20);
-            this.labelCart3resource1q.TabIndex = 21;
-            this.labelCart3resource1q.Text = "0";
-            this.labelCart3resource1q.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // buttonClear3
-            // 
-            this.buttonClear3.Location = new System.Drawing.Point(154, 15);
-            this.buttonClear3.Name = "buttonClear3";
-            this.buttonClear3.Size = new System.Drawing.Size(68, 23);
-            this.buttonClear3.TabIndex = 17;
-            this.buttonClear3.Text = "Clear";
-            this.buttonClear3.UseVisualStyleBackColor = true;
-            this.buttonClear3.Click += new System.EventHandler(this.ButtonClear3_Click);
-            // 
-            // labelCart3resource2
-            // 
-            this.labelCart3resource2.AutoSize = true;
-            this.labelCart3resource2.Location = new System.Drawing.Point(1, 47);
-            this.labelCart3resource2.Name = "labelCart3resource2";
-            this.labelCart3resource2.Size = new System.Drawing.Size(83, 17);
-            this.labelCart3resource2.TabIndex = 3;
-            this.labelCart3resource2.Text = "Rough Stone";
-            // 
-            // labelCart3resource1
-            // 
-            this.labelCart3resource1.AutoSize = true;
-            this.labelCart3resource1.Location = new System.Drawing.Point(1, 30);
-            this.labelCart3resource1.Name = "labelCart3resource1";
-            this.labelCart3resource1.Size = new System.Drawing.Size(78, 17);
-            this.labelCart3resource1.TabIndex = 1;
-            this.labelCart3resource1.Text = "Rough Logs";
-            // 
-            // groupBoxCart2
-            // 
-            this.groupBoxCart2.Controls.Add(this.labelCart2resource2q);
-            this.groupBoxCart2.Controls.Add(this.labelCart2resource1q);
-            this.groupBoxCart2.Controls.Add(this.buttonClear2);
-            this.groupBoxCart2.Controls.Add(this.labelCart2resource2);
-            this.groupBoxCart2.Controls.Add(this.labelCart2resource1);
-            this.groupBoxCart2.Location = new System.Drawing.Point(6, 106);
-            this.groupBoxCart2.Name = "groupBoxCart2";
-            this.groupBoxCart2.Size = new System.Drawing.Size(228, 79);
-            this.groupBoxCart2.TabIndex = 0;
-            this.groupBoxCart2.TabStop = false;
-            this.groupBoxCart2.Tag = "0";
-            this.groupBoxCart2.Text = "Nothing";
-            // 
-            // labelCart2resource2q
-            // 
-            this.labelCart2resource2q.Location = new System.Drawing.Point(98, 47);
-            this.labelCart2resource2q.Name = "labelCart2resource2q";
-            this.labelCart2resource2q.Size = new System.Drawing.Size(50, 20);
-            this.labelCart2resource2q.TabIndex = 20;
-            this.labelCart2resource2q.Text = "0";
-            this.labelCart2resource2q.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // labelCart2resource1q
-            // 
-            this.labelCart2resource1q.Location = new System.Drawing.Point(98, 27);
-            this.labelCart2resource1q.Name = "labelCart2resource1q";
-            this.labelCart2resource1q.Size = new System.Drawing.Size(50, 20);
-            this.labelCart2resource1q.TabIndex = 19;
-            this.labelCart2resource1q.Text = "0";
-            this.labelCart2resource1q.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // buttonClear2
-            // 
-            this.buttonClear2.Location = new System.Drawing.Point(154, 16);
-            this.buttonClear2.Name = "buttonClear2";
-            this.buttonClear2.Size = new System.Drawing.Size(68, 23);
-            this.buttonClear2.TabIndex = 16;
-            this.buttonClear2.Text = "Clear";
-            this.buttonClear2.UseVisualStyleBackColor = true;
-            this.buttonClear2.Click += new System.EventHandler(this.ButtonClear2_Click);
-            // 
-            // labelCart2resource2
-            // 
-            this.labelCart2resource2.AutoSize = true;
-            this.labelCart2resource2.Location = new System.Drawing.Point(1, 47);
-            this.labelCart2resource2.Name = "labelCart2resource2";
-            this.labelCart2resource2.Size = new System.Drawing.Size(83, 17);
-            this.labelCart2resource2.TabIndex = 2;
-            this.labelCart2resource2.Text = "Rough Stone";
-            // 
-            // labelCart2resource1
-            // 
-            this.labelCart2resource1.AutoSize = true;
-            this.labelCart2resource1.Location = new System.Drawing.Point(1, 27);
-            this.labelCart2resource1.Name = "labelCart2resource1";
-            this.labelCart2resource1.Size = new System.Drawing.Size(78, 17);
-            this.labelCart2resource1.TabIndex = 1;
-            this.labelCart2resource1.Text = "Rough Logs";
-            // 
-            // groupBoxCart1
-            // 
-            this.groupBoxCart1.Controls.Add(this.labelCart1resource2q);
-            this.groupBoxCart1.Controls.Add(this.labelCart1resource1q);
-            this.groupBoxCart1.Controls.Add(this.buttonClear1);
-            this.groupBoxCart1.Controls.Add(this.labelCart1resource2);
-            this.groupBoxCart1.Controls.Add(this.labelCart1resource1);
-            this.groupBoxCart1.Location = new System.Drawing.Point(6, 21);
-            this.groupBoxCart1.Name = "groupBoxCart1";
-            this.groupBoxCart1.Size = new System.Drawing.Size(228, 79);
-            this.groupBoxCart1.TabIndex = 0;
-            this.groupBoxCart1.TabStop = false;
-            this.groupBoxCart1.Tag = "0";
-            this.groupBoxCart1.Text = "Nothing";
-            // 
-            // labelCart1resource2q
-            // 
-            this.labelCart1resource2q.Location = new System.Drawing.Point(98, 45);
-            this.labelCart1resource2q.Name = "labelCart1resource2q";
-            this.labelCart1resource2q.Size = new System.Drawing.Size(50, 20);
-            this.labelCart1resource2q.TabIndex = 19;
-            this.labelCart1resource2q.Text = "0";
-            this.labelCart1resource2q.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // labelCart1resource1q
-            // 
-            this.labelCart1resource1q.Location = new System.Drawing.Point(98, 25);
-            this.labelCart1resource1q.Name = "labelCart1resource1q";
-            this.labelCart1resource1q.Size = new System.Drawing.Size(50, 20);
-            this.labelCart1resource1q.TabIndex = 18;
-            this.labelCart1resource1q.Text = "0";
-            this.labelCart1resource1q.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // buttonClear1
-            // 
-            this.buttonClear1.Location = new System.Drawing.Point(154, 19);
-            this.buttonClear1.Name = "buttonClear1";
-            this.buttonClear1.Size = new System.Drawing.Size(68, 23);
-            this.buttonClear1.TabIndex = 15;
-            this.buttonClear1.Text = "Clear";
-            this.buttonClear1.UseVisualStyleBackColor = true;
-            this.buttonClear1.Click += new System.EventHandler(this.ButtonClear1_Click);
-            // 
-            // labelCart1resource2
-            // 
-            this.labelCart1resource2.AutoSize = true;
-            this.labelCart1resource2.Location = new System.Drawing.Point(1, 45);
-            this.labelCart1resource2.Name = "labelCart1resource2";
-            this.labelCart1resource2.Size = new System.Drawing.Size(83, 17);
-            this.labelCart1resource2.TabIndex = 1;
-            this.labelCart1resource2.Text = "Rough Stone";
-            // 
-            // labelCart1resource1
-            // 
-            this.labelCart1resource1.AutoSize = true;
-            this.labelCart1resource1.Location = new System.Drawing.Point(1, 25);
-            this.labelCart1resource1.Name = "labelCart1resource1";
-            this.labelCart1resource1.Size = new System.Drawing.Size(78, 17);
-            this.labelCart1resource1.TabIndex = 0;
-            this.labelCart1resource1.Text = "Rough Logs";
-            // 
             // buttonTransmutation
             // 
             this.buttonTransmutation.Location = new System.Drawing.Point(316, 0);
@@ -1896,6 +1488,22 @@
             this.buttonTransmutation.Text = "Transmutation";
             this.buttonTransmutation.UseVisualStyleBackColor = true;
             this.buttonTransmutation.Click += new System.EventHandler(this.buttonTransmutation_Click);
+            // 
+            // textBoxCart
+            // 
+            this.textBoxCart.Location = new System.Drawing.Point(6, 24);
+            this.textBoxCart.Multiline = true;
+            this.textBoxCart.Name = "textBoxCart";
+            this.textBoxCart.Size = new System.Drawing.Size(228, 191);
+            this.textBoxCart.TabIndex = 10;
+            // 
+            // textBoxCartResource
+            // 
+            this.textBoxCartResource.Location = new System.Drawing.Point(6, 221);
+            this.textBoxCartResource.Multiline = true;
+            this.textBoxCartResource.Name = "textBoxCartResource";
+            this.textBoxCartResource.Size = new System.Drawing.Size(228, 214);
+            this.textBoxCartResource.TabIndex = 11;
             // 
             // Form1
             // 
@@ -1948,17 +1556,9 @@
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             this.groupBoxCart.ResumeLayout(false);
-            this.groupBox15.ResumeLayout(false);
+            this.groupBoxCart.PerformLayout();
             this.groupBox17.ResumeLayout(false);
             this.groupBox17.PerformLayout();
-            this.groupBox16.ResumeLayout(false);
-            this.groupBox16.PerformLayout();
-            this.groupBoxCart3.ResumeLayout(false);
-            this.groupBoxCart3.PerformLayout();
-            this.groupBoxCart2.ResumeLayout(false);
-            this.groupBoxCart2.PerformLayout();
-            this.groupBoxCart1.ResumeLayout(false);
-            this.groupBoxCart1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2079,28 +1679,7 @@
         private System.Windows.Forms.Button buttonLeather;
         private System.Windows.Forms.Button buttonCloth;
         private System.Windows.Forms.GroupBox groupBoxCart;
-        private System.Windows.Forms.GroupBox groupBox15;
-        private System.Windows.Forms.GroupBox groupBoxCart3;
-        private System.Windows.Forms.GroupBox groupBoxCart2;
-        private System.Windows.Forms.GroupBox groupBoxCart1;
         private System.Windows.Forms.GroupBox groupBox17;
-        private System.Windows.Forms.GroupBox groupBox16;
-        private System.Windows.Forms.Label labelAll6;
-        private System.Windows.Forms.Label labelAll5;
-        private System.Windows.Forms.Label labelAll4;
-        private System.Windows.Forms.Label labelAll3;
-        private System.Windows.Forms.Label labelAll2;
-        private System.Windows.Forms.Label labelAll1;
-        private System.Windows.Forms.Label labelCart3resource2;
-        private System.Windows.Forms.Label labelCart3resource1;
-        private System.Windows.Forms.Label labelCart2resource2;
-        private System.Windows.Forms.Label labelCart2resource1;
-        private System.Windows.Forms.Label labelCart1resource2;
-        private System.Windows.Forms.Label labelCart1resource1;
-        private System.Windows.Forms.Button buttonClear3;
-        private System.Windows.Forms.Button buttonClear2;
-        private System.Windows.Forms.Button buttonClear1;
-        private System.Windows.Forms.Button buttonClearAll;
         private System.Windows.Forms.TextBox textBoxTotalProfitFocus;
         private System.Windows.Forms.TextBox textBoxTotalCost;
         private System.Windows.Forms.TextBox textBoxTotalSellPrice;
@@ -2108,23 +1687,11 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonAddToCart;
-        private System.Windows.Forms.Label labelCart1resource1q;
-        private System.Windows.Forms.Label labelCart3resource2q;
-        private System.Windows.Forms.Label labelCart3resource1q;
-        private System.Windows.Forms.Label labelCart2resource2q;
-        private System.Windows.Forms.Label labelCart2resource1q;
-        private System.Windows.Forms.Label labelCart1resource2q;
-        private System.Windows.Forms.Label labelAll6q;
-        private System.Windows.Forms.Label labelAll5q;
-        private System.Windows.Forms.Label labelAll4q;
-        private System.Windows.Forms.Label labelAll3q;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label labelAll2q;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label labelAll1q;
         private System.Windows.Forms.TextBox textBoxTotalProfit;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Button buttonTransmutation;
+        private System.Windows.Forms.TextBox textBoxCartResource;
+        private System.Windows.Forms.TextBox textBoxCart;
     }
 }
 

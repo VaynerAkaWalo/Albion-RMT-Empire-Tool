@@ -21,12 +21,14 @@ namespace Albion_RMT_Empire_Tool_v1
 
         private CustomXMLReader customReader;
         private CustomPictureLoader customPictureLoader;
+        private ShoppingCart cart;
 
         public Form1()
         {
             InitializeComponent();
             customReader = new CustomXMLReader();
             customPictureLoader = new CustomPictureLoader();
+            cart = new ShoppingCart();
         }
 
 
@@ -70,251 +72,12 @@ namespace Albion_RMT_Empire_Tool_v1
 
         private void SetLabelsToBlank()
         {
-            labelAll1.Text = "";
-            labelAll2.Text = "";
-            labelAll3.Text = "";
-            labelAll4.Text = "";
-            labelAll5.Text = "";
-            labelAll6.Text = "";
-
-            labelAll1q.Text = "";
-            labelAll2q.Text = "";
-            labelAll3q.Text = "";
-            labelAll4q.Text = "";
-            labelAll5q.Text = "";
-            labelAll6q.Text = "";
-
             labelCloth.Text = "Cloth: 0%";
             labelLeather.Text = "Lether: 0%";
             labelMetal.Text = "Metal Bar: 0%";
             labelPlanks.Text = "Planks: 0%";
         }
 
-        private void AddToCart()
-        {
-            if (comboBoxItem.SelectedItem != null)
-            {
-                groupBoxCart.Enabled = true;
-
-                if (groupBoxCart1.Tag.ToString() == labelItemName.Text)
-                {
-                    labelCart1resource1q.Text = (int.Parse(labelCart1resource1q.Text) + int.Parse(labelQuantityResource1.Text)).ToString();
-                    labelCart1resource2q.Text = (int.Parse(labelCart1resource2q.Text) + int.Parse(labelQuantityResource2.Text)).ToString();
-                    groupBoxCart1.Text = groupBoxCart1.Tag + ": " + (int.Parse(textBoxQuantity.Text) + int.Parse(buttonClear1.Tag.ToString())).ToString();
-                    buttonClear1.Tag = (int.Parse(textBoxQuantity.Text) + int.Parse(buttonClear1.Tag.ToString())).ToString();
-                    labelAll1.Tag = int.Parse(textBoxWithoutfocustotalcost.Text.Replace(",","")) + int.Parse(labelAll1.Tag.ToString());
-                    labelAll4.Tag = int.Parse(textBoxWithfocustotalcost.Text.Replace(",", "")) + int.Parse(labelAll4.Tag.ToString());
-                    labelAll1q.Tag = ((int.Parse(textBoxQuantity.Text) * int.Parse(textBoxItemSellingPrice.Text)) + int.Parse(labelAll1q.Tag.ToString())).ToString();
-                }
-                else if (groupBoxCart2.Tag.ToString() == labelItemName.Text)
-                {
-                    labelCart2resource1q.Text = (int.Parse(labelCart2resource1q.Text) + int.Parse(labelQuantityResource1.Text)).ToString();
-                    labelCart2resource2q.Text = (int.Parse(labelCart2resource2q.Text) + int.Parse(labelQuantityResource2.Text)).ToString();
-                    groupBoxCart2.Text = groupBoxCart2.Tag + ": " + (int.Parse(textBoxQuantity.Text) + int.Parse(buttonClear2.Tag.ToString())).ToString();
-                    buttonClear2.Tag = (int.Parse(textBoxQuantity.Text) + int.Parse(buttonClear2.Tag.ToString())).ToString();
-                    labelAll2.Tag = int.Parse(textBoxWithoutfocustotalcost.Text.Replace(",", "")) + int.Parse(labelAll2.Tag.ToString());
-                    labelAll5.Tag = int.Parse(textBoxWithfocustotalcost.Text.Replace(",", "")) + int.Parse(labelAll5.Tag.ToString());
-                    labelAll2q.Tag = ((int.Parse(textBoxQuantity.Text) * int.Parse(textBoxItemSellingPrice.Text)) + int.Parse(labelAll2q.Tag.ToString())).ToString();
-                }
-                else if (groupBoxCart3.Tag.ToString() == labelItemName.Text)
-                {
-                    labelCart3resource1q.Text = (int.Parse(labelCart3resource1q.Text) + int.Parse(labelQuantityResource1.Text)).ToString();
-                    labelCart3resource2q.Text = (int.Parse(labelCart3resource2q.Text) + int.Parse(labelQuantityResource2.Text)).ToString();
-                    groupBoxCart3.Text = groupBoxCart3.Tag + ": " + (int.Parse(textBoxQuantity.Text) + int.Parse(buttonClear3.Tag.ToString())).ToString();
-                    buttonClear3.Tag = (int.Parse(textBoxQuantity.Text) + int.Parse(buttonClear3.Tag.ToString())).ToString();
-                    labelAll3.Tag = int.Parse(textBoxWithoutfocustotalcost.Text.Replace(",", "")) + int.Parse(labelAll3.Tag.ToString());
-                    labelAll6.Tag = int.Parse(textBoxWithfocustotalcost.Text.Replace(",", "")) + int.Parse(labelAll6.Tag.ToString());
-                    labelAll3q.Tag = ((int.Parse(textBoxQuantity.Text) * int.Parse(textBoxItemSellingPrice.Text)) + int.Parse(labelAll3q.Tag.ToString())).ToString();
-                }
-                else if (groupBoxCart1.Text == "Nothing")
-                {
-                    groupBoxCart1.Text = labelItemName.Text + " " + textBoxQuantity.Text;
-                    groupBoxCart1.Tag = labelItemName.Text;
-                    labelCart1resource1.Text = labelResource1.Text;
-                    labelCart1resource1q.Text = labelQuantityResource1.Text;
-                    labelCart1resource2.Text = labelResource2.Text;
-                    labelCart1resource2q.Text = labelQuantityResource2.Text;
-                    buttonClear1.Tag = textBoxQuantity.Text;
-                    labelAll1.Tag = textBoxWithoutfocustotalcost.Text.Replace(",","");
-                    labelAll4.Tag = textBoxWithfocustotalcost.Text.Replace(",", "");
-                    labelAll1q.Tag = ((int.Parse(textBoxQuantity.Text) * int.Parse(textBoxItemSellingPrice.Text)).ToString());
-                }
-                else if (groupBoxCart2.Text == "Nothing")
-                {
-                    groupBoxCart2.Text = labelItemName.Text + " " + textBoxQuantity.Text;
-                    groupBoxCart2.Tag = labelItemName.Text;
-                    labelCart2resource1.Text = labelResource1.Text;
-                    labelCart2resource1q.Text = labelQuantityResource1.Text;
-                    labelCart2resource2.Text = labelResource2.Text;
-                    labelCart2resource2q.Text = labelQuantityResource2.Text;
-                    buttonClear2.Tag = textBoxQuantity.Text;
-                    labelAll2.Tag = textBoxWithoutfocustotalcost.Text.Replace(",", "");
-                    labelAll5.Tag = textBoxWithfocustotalcost.Text.Replace(",", "");
-                    labelAll2q.Tag = ((int.Parse(textBoxQuantity.Text) * int.Parse(textBoxItemSellingPrice.Text)).ToString());
-                }
-                else if (groupBoxCart3.Text == "Nothing")
-                {
-                    groupBoxCart3.Text = labelItemName.Text + " " + textBoxQuantity.Text;
-                    groupBoxCart3.Tag = labelItemName.Text;
-                    labelCart3resource1.Text = labelResource1.Text;
-                    labelCart3resource1q.Text = labelQuantityResource1.Text;
-                    labelCart3resource2.Text = labelResource2.Text;
-                    labelCart3resource2q.Text = labelQuantityResource2.Text;
-                    buttonClear3.Tag = textBoxQuantity.Text;
-                    labelAll3.Tag = textBoxWithoutfocustotalcost.Text.Replace(",", "");
-                    labelAll6.Tag = textBoxWithfocustotalcost.Text.Replace(",", "");
-                    labelAll3q.Tag = ((int.Parse(textBoxQuantity.Text) * int.Parse(textBoxItemSellingPrice.Text)).ToString());
-                }
-
-                Money();
-                AllTogether();
-            }
-        }
-
-        private void Money()
-        {
-            NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
-            nfi.NumberDecimalDigits = 0;
-            textBoxTotalCost.Text = (int.Parse(labelAll1.Tag.ToString()) + int.Parse(labelAll2.Tag.ToString()) + int.Parse(labelAll3.Tag.ToString())).ToString("N", nfi);
-            textBoxTotalCost.Tag = (int.Parse(labelAll4.Tag.ToString()) + int.Parse(labelAll5.Tag.ToString()) + int.Parse(labelAll6.Tag.ToString())).ToString("N", nfi);
-            textBoxTotalSellPrice.Text = (int.Parse(labelAll1q.Tag.ToString()) + int.Parse(labelAll2q.Tag.ToString()) + int.Parse(labelAll3q.Tag.ToString())).ToString("N", nfi);
-            textBoxTotalProfit.Text = (int.Parse(textBoxTotalSellPrice.Text.Replace(",","")) - int.Parse(textBoxTotalCost.Text.Replace(",",""))).ToString("N", nfi);
-            textBoxTotalProfitFocus.Text = (int.Parse(textBoxTotalSellPrice.Text.Replace(",", "")) - int.Parse(textBoxTotalCost.Tag.ToString().Replace(",", ""))).ToString("N", nfi);
-        }
-
-        private void ClearCart(GroupBox groupBox)
-        {
-            if (groupBox.Text != "Nothing")
-            {
-                groupBox.Text = "Nothing";
-                if (groupBox == groupBoxCart1)
-                {
-                    labelCart1resource1.Text = "Rough Logs";
-                    labelCart1resource1q.Text = "0";
-                    labelCart1resource2.Text = "Rough Stone";
-                    labelCart1resource2q.Text = "0";
-                    buttonClear1.Tag = "0";
-                    labelAll1.Tag = "0";
-                    labelAll4.Tag = "0";
-                    labelAll1q.Tag = "0";
-                }
-                else if (groupBox == groupBoxCart2)
-                {
-                    labelCart2resource1.Text = "Rough Logs";
-                    labelCart2resource1q.Text = "0";
-                    labelCart2resource2.Text = "Rough Stone";
-                    labelCart2resource2q.Text = "0";
-                    buttonClear2.Tag = "0";
-                    labelAll2.Tag = "0";
-                    labelAll5.Tag = "0";
-                    labelAll2q.Tag = "0";
-                }
-                else if (groupBox == groupBoxCart3)
-                {
-                    labelCart3resource1.Text = "Rough Logs";
-                    labelCart3resource1q.Text = "0";
-                    labelCart3resource2.Text = "Rough Stone";
-                    labelCart3resource2q.Text = "0";
-                    buttonClear3.Tag = "0";
-                    labelAll3.Tag = "0";
-                    labelAll6.Tag = "0";
-                    labelAll3q.Tag = "0";
-                }
-                Money();
-                groupBox.Tag = "0";
-            }
-        }
-
-        private void AllTogether()
-        {
-            string[] resource = new string[6];
-            resource[0] = labelCart1resource1.Text;
-            resource[1] = labelCart1resource2.Text;
-            resource[2] = labelCart2resource1.Text;
-            resource[3] = labelCart2resource2.Text;
-            resource[4] = labelCart3resource1.Text;
-            resource[5] = labelCart3resource2.Text;
-
-            int[] quantity = new int[6];
-            quantity[0] = int.Parse(labelCart1resource1q.Text);
-            quantity[1] = int.Parse(labelCart1resource2q.Text);
-            quantity[2] = int.Parse(labelCart2resource1q.Text);
-            quantity[3] = int.Parse(labelCart2resource2q.Text);
-            quantity[4] = int.Parse(labelCart3resource1q.Text);
-            quantity[5] = int.Parse(labelCart3resource2q.Text);
-
-
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 6; j++)
-                {
-                    if (i != j)
-                    {
-                        if (resource[i] == resource[j])
-                        {
-                            resource[j] = "Rough Logs";
-                            quantity[i] += quantity[j];
-                            quantity[j] = 0;
-                        }
-                    }
-                }
-            }
-            int tempint = 0;
-            string tempstring = "";
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    if (quantity[j] < quantity[j+1])
-                    {
-                         tempstring = resource[j+1];
-                         tempint = quantity[j+1];
-
-                         resource[j+1] = resource[j];
-                         quantity[j+1] = quantity[j];
-
-                         resource[j] = tempstring;
-                         quantity[j] = tempint;
-                    }
-                }
-                if (resource[i] == "Rough Stone")
-                {
-                    resource[i] = "Rough Logs";
-                }
-            }
-            if (resource[0] != "Rough Logs")
-            {
-                labelAll1.Text = resource[0];
-                labelAll1q.Text = quantity[0].ToString();
-            }
-            if (resource[1] != "Rough Logs")
-            {
-                labelAll2.Text = resource[1];
-                labelAll2q.Text = quantity[1].ToString();
-            }
-            if (resource[2] != "Rough Logs")
-            {
-                labelAll3.Text = resource[2];
-                labelAll3q.Text = quantity[2].ToString();
-
-            }
-            if (resource[3] != "Rough Logs")
-            {
-                labelAll4.Text = resource[3];
-                labelAll4q.Text = quantity[3].ToString();
-            }
-            if (resource[4] != "Rough Logs")
-            {
-                labelAll5.Text = resource[4];
-                labelAll5q.Text = quantity[4].ToString();
-            }
-            if (resource[5] != "Rough Logs")
-            {
-                labelAll6.Text = resource[5];
-                labelAll6q.Text = quantity[5].ToString();
-            }
-        
-        }
 
         private void ComboBoxSubCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1026,29 +789,36 @@ namespace Albion_RMT_Empire_Tool_v1
 
         private void ButtonAddToCart_Click(object sender, EventArgs e)
         {
-            AddToCart();
+            string itemname = labelItemName.Text;
+            string resource1 = labelResource1.Text;
+            string resource2 = labelResource2.Text;
+
+            int itemq = int.Parse(textBoxQuantity.Text);
+            int resource1q = int.Parse(labelQuantityResource1.Text);
+            int resource2q = int.Parse(labelQuantityResource2.Text);
+
+            cart.AddtoCart(itemname, resource1, resource2, itemq, resource1q, resource2q);
+            textBoxCartResource.Text = cart.DisplayCart();
         }
 
         private void ButtonClear1_Click(object sender, EventArgs e)
         {
-            ClearCart(groupBoxCart1);
+            
         }
 
         private void ButtonClear2_Click(object sender, EventArgs e)
         {
-            ClearCart(groupBoxCart2);
+            
         }
 
         private void ButtonClear3_Click(object sender, EventArgs e)
         {
-            ClearCart(groupBoxCart3);
+            
         }
 
         private void ButtonClearAll_Click(object sender, EventArgs e)
         {
-            ClearCart(groupBoxCart1);
-            ClearCart(groupBoxCart2);
-            ClearCart(groupBoxCart3);
+            
         }
 
         private bool IsUrlExist(string url)
