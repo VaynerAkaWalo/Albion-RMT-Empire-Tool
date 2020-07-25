@@ -98,6 +98,10 @@ namespace Albion_RMT_Empire_Tool_Beta
 
             Resource.Clear();
             ResourceQuantity.Clear();
+
+            ItemSellPrice.Clear();
+            ResourceCost.Clear();
+            ResourceCostFocus.Clear();
         }
 
         
