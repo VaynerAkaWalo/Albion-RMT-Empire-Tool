@@ -62,12 +62,13 @@ namespace Albion_RMT_Empire_Tool_v1
 
             SaveXMLsToFiles();
 
-
             comboBoxCity.SelectedIndex = 0;
             ReturnRate();
 
             Marketcheck();
             Laborercheck();
+
+            CartUpdate();
 
         }
 
@@ -369,7 +370,7 @@ namespace Albion_RMT_Empire_Tool_v1
                         resource2 = xmlReaderload.GetAttribute("resource2");
                     }
 
-                    xmlReaderload = XmlReader.Create("data.xml");
+                    xmlReaderload = customReader.GetDataXml();
                     float cloth = 0;
                     float leather = 0;
                     float metal = 0;

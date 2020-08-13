@@ -1,6 +1,7 @@
 ﻿using Albion_RMT_Empire_Tool_v1;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -164,6 +165,9 @@ namespace Albion_RMT_Empire_Tool_Beta
 
         public string DisplayMoney()
         {
+            NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
+            nfi.NumberDecimalDigits = 0;
+
             string money = "";
 
             int totalcost = Counting(ResourceCost);
@@ -173,13 +177,13 @@ namespace Albion_RMT_Empire_Tool_Beta
             int profit = sellprice - totalcost;
             int profitfocus = sellprice - totalcostfocus;
 
-            money = "Total sell price: " + sellprice.ToString() + "\r\n" + "\r\n";
+            money = "Total sell price: " + sellprice.ToString("N", nfi) + "\r\n" + "\r\n";
 
-            money += "Total cost without focus: " + totalcost.ToString() + "\r\n";
-            money += "Total profit without focus: " + profit.ToString() + "\r\n" + "\r\n";
+            money += "Total cost without focus: " + totalcost.ToString("N", nfi) + "\r\n";
+            money += "Total profit without focus: " + profit.ToString("N", nfi) + "\r\n" + "\r\n";
 
-            money += "Total cost with focus: " + totalcostfocus.ToString() + "\r\n";
-            money += "Total profit with focus: " + profitfocus.ToString() + "\r\n" + "\r\n";
+            money += "Total cost with focus: " + totalcostfocus.ToString("N", nfi) + "\r\n";
+            money += "Total profit with focus: " + profitfocus.ToString("N", nfi) + "\r\n" + "\r\n";
             return money;
         }
 

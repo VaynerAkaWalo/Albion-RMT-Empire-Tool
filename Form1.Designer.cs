@@ -153,8 +153,8 @@
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.textBoxCartResource = new System.Windows.Forms.TextBox();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
-            this.buttonTransmutation = new System.Windows.Forms.Button();
             this.textBoxMoney = new System.Windows.Forms.TextBox();
+            this.buttonTransmutation = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -467,7 +467,6 @@
             // checkBoxLowerTierHouse
             // 
             this.checkBoxLowerTierHouse.AutoSize = true;
-            this.checkBoxLowerTierHouse.Enabled = false;
             this.checkBoxLowerTierHouse.Location = new System.Drawing.Point(83, 24);
             this.checkBoxLowerTierHouse.Name = "checkBoxLowerTierHouse";
             this.checkBoxLowerTierHouse.Size = new System.Drawing.Size(179, 21);
@@ -1478,16 +1477,6 @@
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "Money";
             // 
-            // buttonTransmutation
-            // 
-            this.buttonTransmutation.Location = new System.Drawing.Point(316, 0);
-            this.buttonTransmutation.Name = "buttonTransmutation";
-            this.buttonTransmutation.Size = new System.Drawing.Size(100, 23);
-            this.buttonTransmutation.TabIndex = 21;
-            this.buttonTransmutation.Text = "Transmutation";
-            this.buttonTransmutation.UseVisualStyleBackColor = true;
-            this.buttonTransmutation.Click += new System.EventHandler(this.buttonTransmutation_Click);
-            // 
             // textBoxMoney
             // 
             this.textBoxMoney.Location = new System.Drawing.Point(10, 23);
@@ -1495,6 +1484,18 @@
             this.textBoxMoney.Name = "textBoxMoney";
             this.textBoxMoney.Size = new System.Drawing.Size(212, 144);
             this.textBoxMoney.TabIndex = 0;
+            // 
+            // buttonTransmutation
+            // 
+            this.buttonTransmutation.Enabled = false;
+            this.buttonTransmutation.Location = new System.Drawing.Point(316, 0);
+            this.buttonTransmutation.Name = "buttonTransmutation";
+            this.buttonTransmutation.Size = new System.Drawing.Size(100, 23);
+            this.buttonTransmutation.TabIndex = 21;
+            this.buttonTransmutation.Text = "Transmutation";
+            this.buttonTransmutation.UseVisualStyleBackColor = true;
+            this.buttonTransmutation.Visible = false;
+            this.buttonTransmutation.Click += new System.EventHandler(this.buttonTransmutation_Click);
             // 
             // Form1
             // 
