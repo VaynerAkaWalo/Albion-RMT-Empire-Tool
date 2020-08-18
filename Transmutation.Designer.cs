@@ -738,7 +738,7 @@
             this.textBoxGlobaldiscount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.textBoxGlobaldiscount.Size = new System.Drawing.Size(56, 25);
             this.textBoxGlobaldiscount.TabIndex = 14;
-            this.textBoxGlobaldiscount.Text = "4,94";
+            this.textBoxGlobaldiscount.Text = "6,2";
             // 
             // label42
             // 
@@ -756,7 +756,7 @@
             this.textBoxTax.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.textBoxTax.Size = new System.Drawing.Size(51, 25);
             this.textBoxTax.TabIndex = 3;
-            this.textBoxTax.Text = "50";
+            this.textBoxTax.Text = "51";
             // 
             // label41
             // 

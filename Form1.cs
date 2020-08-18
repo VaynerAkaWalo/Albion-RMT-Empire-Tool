@@ -89,7 +89,7 @@ namespace Albion_RMT_Empire_Tool_v1
 
         }
 
-        private void FillComboboxincart()
+        private void FillComboboxInCart()
         {
             List<string> items = new List<string>(cart.OnlyItems());
             int n = items.Count;
@@ -941,7 +941,7 @@ namespace Albion_RMT_Empire_Tool_v1
 
         private void CartUpdate()
         {
-            FillComboboxincart();
+            FillComboboxInCart();
             textBoxCartResource.Text = cart.DisplayCartResource();
             textBoxCart.Text = cart.DisplayCart();
             textBoxMoney.Text = cart.DisplayMoney();
@@ -954,6 +954,11 @@ namespace Albion_RMT_Empire_Tool_v1
                 cart.ClearItem(comboBoxCartItemSelection.SelectedItem.ToString());
             }
             CartUpdate();
+        }
+
+        private void textBoxCart_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1447,6 +1447,7 @@
             this.textBoxCart.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxCart.Size = new System.Drawing.Size(212, 103);
             this.textBoxCart.TabIndex = 10;
+            this.textBoxCart.TextChanged += new System.EventHandler(this.textBoxCart_TextChanged);
             // 
             // groupBox11
             // 
@@ -1487,14 +1488,12 @@
             // 
             // buttonTransmutation
             // 
-            this.buttonTransmutation.Enabled = false;
             this.buttonTransmutation.Location = new System.Drawing.Point(316, 0);
             this.buttonTransmutation.Name = "buttonTransmutation";
             this.buttonTransmutation.Size = new System.Drawing.Size(100, 23);
             this.buttonTransmutation.TabIndex = 21;
             this.buttonTransmutation.Text = "Transmutation";
             this.buttonTransmutation.UseVisualStyleBackColor = true;
-            this.buttonTransmutation.Visible = false;
             this.buttonTransmutation.Click += new System.EventHandler(this.buttonTransmutation_Click);
             // 
             // Form1

@@ -78,7 +78,7 @@ namespace Albion_RMT_Empire_Tool_Beta
             {
 
                 string tier = comboBoxTier.SelectedItem.ToString();
-                string enchantment = "_" + comboBoxEnchantment.SelectedItem.ToString();
+                string enchantment = comboBoxEnchantment.SelectedItem.ToString().Replace(".", "");
                 string ending = comboBoxResource.SelectedItem.ToString().ToUpper().Replace(" ", "");
                 string tierandenchantment = tier + enchantment.Replace("_","");
 
@@ -124,11 +124,7 @@ namespace Albion_RMT_Empire_Tool_Beta
                 labelRecCity.Text = city.Replace("_", "");
                 groupBoxresource.Text = name + " " + comboBoxTier.SelectedItem.ToString() + comboBoxEnchantment.SelectedItem.ToString();
                 
-                if (comboBoxEnchantment.SelectedItem.ToString() != ".0")
-                {
-                    enchantment = enchantment.Replace(".", "LEVEL");
-                }
-                else
+                if (comboBoxEnchantment.SelectedItem.ToString() == ".0")
                 {
                     enchantment = "";
                 }
@@ -254,22 +250,28 @@ namespace Albion_RMT_Empire_Tool_Beta
                         Transmutationquantity.Add(Transmutationquantity[i]);
                     }
                 }
-                else
+                else 
                 {
                     for (int j = 0; j < (int.Parse(tier) - 3); j++)
                     {
-                        for (int k = 0; k < enchantmentlevel; k++)
-                        {
-                            Transmutationlist.Add(namespacesraw[j] + " T" + (j + 4).ToString() + "." + k.ToString());
-                            Transmutationquantity.Add(Transmutationquantity[i]);
-                        }
-                        if (j < (int.Parse(tier) - 4))
-                        {
-                            Transmutationlist.Add(namespacesraw[j] + " T" + (j + 4).ToString() + comboBoxEnchantment.SelectedItem.ToString());
-                            Transmutationquantity.Add(Transmutationquantity[i]);
-                        }
+
+                        Transmutationlist.Add(namespacesraw[j] + " T" + (j + 4).ToString() + ".0");
+                        Transmutationquantity.Add(Transmutationquantity[i]);
                     }
+
+                }
+                if (enchantmentlevel > 1)
+                {
                     
+                      Transmutationlist.Add(namespacesraw[int.Parse(tier) - 4] + " T" + tier + ".1");
+                      Transmutationquantity.Add(Transmutationquantity[i]);
+
+                }
+                if (enchantmentlevel > 2)
+                {
+                      Transmutationlist.Add(namespacesraw[int.Parse(tier) - 4] + " T" + tier + ".2");
+                      Transmutationquantity.Add(Transmutationquantity[i]);
+
                 }
             }
         }
@@ -441,6 +443,8 @@ namespace Albion_RMT_Empire_Tool_Beta
             textBoxTaxprice.Text = "0";
             textBoxTransmutationcost.Text = "0";
 
+            textBox3.Text = "";
+
             for (int i = 0; i < Transmutationlist.Count;i++)
             {
                 if (Transmutationlist[i] != "nothing")
@@ -456,25 +460,25 @@ namespace Albion_RMT_Empire_Tool_Beta
                     {
                         case "0":
                             taxcost = (int)Math.Ceiling(itemvalueraw0[int.Parse(tier) - 4] / 20 * int.Parse(textBoxTax.Text) * Transmutationquantity[i]);
-                            transmutationcost = (int)Math.Floor((100 - float.Parse(textBoxGlobaldiscount.Text)) * transmutationcost0[int.Parse(tier) - 4] / 100 * Transmutationquantity[i]);
+                            transmutationcost = (int)Math.Floor((100 - float.Parse(textBoxGlobaldiscount.Text)) * transmutationcost0[int.Parse(tier) - 4] / 100) * Transmutationquantity[i];
                             break;
                         case "1":
                             taxcost = (int)Math.Ceiling(itemvalueraw1[int.Parse(tier) - 4] / 20 * int.Parse(textBoxTax.Text) * Transmutationquantity[i]);
-                            transmutationcost = (int)Math.Floor(((100 - float.Parse(textBoxGlobaldiscount.Text)) * transmutationcost1[int.Parse(tier) - 4] / 100) * Transmutationquantity[i]);
+                            transmutationcost = (int)Math.Floor((100 - float.Parse(textBoxGlobaldiscount.Text)) * transmutationcost1[int.Parse(tier) - 4] / 100) * Transmutationquantity[i];
                             break;
                         case "2":
                             taxcost = (int)Math.Ceiling(itemvalueraw2[int.Parse(tier) - 4] / 20 * int.Parse(textBoxTax.Text) * Transmutationquantity[i]);
-                            transmutationcost = (int)Math.Floor(((100 - float.Parse(textBoxGlobaldiscount.Text)) * transmutationcost2[int.Parse(tier) - 4] / 100) * Transmutationquantity[i]);
+                            transmutationcost = (int)Math.Floor((100 - float.Parse(textBoxGlobaldiscount.Text)) * transmutationcost2[int.Parse(tier) - 4] / 100) * Transmutationquantity[i];
                             break;
                         case "3":
                             taxcost = (int)Math.Ceiling(itemvalueraw3[int.Parse(tier) - 4] / 20 * int.Parse(textBoxTax.Text) * Transmutationquantity[i]);
-                            transmutationcost = (int)Math.Floor(((100 - float.Parse(textBoxGlobaldiscount.Text)) * transmutationcost3[int.Parse(tier) - 4] / 100) * Transmutationquantity[i]);
+                            transmutationcost = (int)Math.Floor((100 - float.Parse(textBoxGlobaldiscount.Text)) * transmutationcost3[int.Parse(tier) - 4] / 100) * Transmutationquantity[i];
                             break;
                     }
 
                     if ((tier + enchant) != "40")
                     {
-                        textBox3.Text = textBox3.Text + Math.Ceiling((100 - float.Parse(textBoxGlobaldiscount.Text)) * transmutationcost0[int.Parse(tier) - 4] / 100 * Transmutationquantity[i]).ToString() + " ";
+                        textBox3.Text = textBox3.Text + taxcost + " ";
                         textBoxTaxprice.Text = (int.Parse(textBoxTaxprice.Text) + taxcost).ToString();
                         textBoxTransmutationcost.Text = (int.Parse(textBoxTransmutationcost.Text) + transmutationcost).ToString();
                     }
